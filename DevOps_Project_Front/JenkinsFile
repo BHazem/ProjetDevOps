@@ -1,0 +1,11 @@
+pipeline{
+    agent any
+   
+        stage("Chekout Git"){
+            steps {
+                echo "Pulling"
+              
+            }
+        
+    }
+}
