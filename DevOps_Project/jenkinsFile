@@ -1,0 +1,23 @@
+pipeline{
+    agent any
+    stages {
+        stage("Testing Maven"){
+            steps {
+                sh "mvn -version"
+            }
+        }
+        stage("Testing JDK"){
+            steps {
+                sh "java -version"
+            }
+        }
+        stage("Chekout Git"){
+            steps {
+                echo "Pulling"
+                git branch : "main",
+                url : "https://github.com/BHazem/ProjetDevOps/DevOps_Project",
+                credentialsId:'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'
+            }
+        }
+    }
+}
