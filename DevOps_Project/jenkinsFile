@@ -16,5 +16,10 @@ pipeline{
                 echo "Pulling"
             }
         }
+       stage("Sonar"){
+            steps {
+                sh "sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar"
+            }
+        }
     }
 }
