@@ -19,10 +19,10 @@ pipeline{
 
 
         }
-      stage("Sonar"){
-            steps {
-                echo "sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar"
-            }
-    }
+          stage("Sonar"){
+                steps {
+                    echo "sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar"
+                }
+        }
 }
 }
