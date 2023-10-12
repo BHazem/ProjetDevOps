@@ -19,9 +19,17 @@ pipeline{
 
 
         }
+      stage("Compile Mvn"){
+                steps {
+                    sh "mvn -compile"
+                  
+                }
+
+
+        }
           stage("Sonar"){
                 steps {
-                    echo "sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar"
+                    sh "mvn  sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar"
                 }
         }
 }
