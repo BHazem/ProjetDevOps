@@ -14,20 +14,19 @@ pipeline{
         stage("Chekout Git"){
             steps {
                 echo "Pulling"
-              
             }
-
-
         }
-    stage('MVN COMPILE') {
+        stage('MVN COMPILE') {
             steps{
+                 dir('DevOps_Project') {
                 sh 'mvn compile'
             }
         }
-        stage('MVN SONARQUBE') {
-            steps{
-                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+}
+       stage("Sonar"){
+            steps {
+                sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar"
             }
         }
-}
+    }
 }
