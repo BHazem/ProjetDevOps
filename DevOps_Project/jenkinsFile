@@ -16,9 +16,14 @@ pipeline{
                 echo "Pulling"
             }
         }
+         stage("MVN COMPILE"){
+            steps {
+                sh "mvn compile"
+            }
+        }
        stage("Sonar"){
             steps {
-                sh "sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar"
+                sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar"
             }
         }
     }
