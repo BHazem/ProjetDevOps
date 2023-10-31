@@ -34,9 +34,9 @@ class ProductServiceImplTest {
 
     @Test
     void retrieveProduct() {
-    Product product = new Product().builder().idProduct(4L).title("Souris").build();
-    Product product1 = iProductService.retrieveProduct(4L);
-    assertThat(product1.getIdProduct()).isEqualTo(4L);
+    Product product = new Product().builder().idProduct(10L).title("Souris").build();
+    Product product1 = iProductService.retrieveProduct(10L);
+    assertThat(product1.getIdProduct()).isEqualTo(10L);
     assertThat(product1).isNotNull();
     }
 
@@ -65,8 +65,8 @@ class ProductServiceImplTest {
 
     @Test
     void deleteProduct() {
-        iProductService.deleteProduct(4L);
-        Product product = productRepository.findById(4L).orElse(null);
+        iProductService.deleteProduct(5L);
+        Product product = productRepository.findById(5L).orElse(null);
         assertThat(product).isNull();
     }
 
