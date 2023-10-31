@@ -95,7 +95,7 @@ class ProductServiceImplTest {
         List<Product> listproducts = new ArrayList<Product>() {
             {
                 add(new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING));
-                // Ajoutez d'autres produits si nécessaire
+                
             }
         };
 
