@@ -23,13 +23,27 @@ pipeline {
                 }
             }
         }
-        stage('MVN SONARQUBE') {
-            steps {
-                dir('DevOps_Project') {
-                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
-                }
+stage('Run Tests') {
+    steps {
+        dir('DevOps_Project') {
+            sh 'mvn test'  // Exécute les tests unitaires
+        }
+    }
+}
+  stage('Generate JaCoCo Coverage Report') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn jacoco:report'
             }
         }
+    }
+    stage('MVN SONARQUBE') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+            }
+        }
+    }
     }
     post {
         always {
@@ -39,6 +53,7 @@ pipeline {
                     sh "${scannerHome}/bin/sonar-scanner \
                         -Dsonar.login=admin \
                         -Dsonar.password=sonar \
+                        -Dsonar.jacoco.reportPaths=DevOps_Project/target/site/jacoco/jacoco.xml \
                         -Dsonar.projectKey=DevOps_Project \
                         -Dsonar.exclusions=vendor/**,resources/**,**/*.java \
                         -Dsonar.host.url=http://192.168.1.27:9000/"
@@ -46,4 +61,5 @@ pipeline {
             }
         }
     }
+  
 }
