@@ -23,10 +23,18 @@ pipeline {
                 }
             }
         }
+stage("Testing Maven") {
+    steps {
+        script {
+            def nodePath = tool name: 'Node.js', type: 'hudson.tools.InstallSourceProperty$Installable'
+            sh "${nodePath}/bin/node -v"
+        }
+    }
+}
 stage('Run Tests') {
     steps {
         dir('DevOps_Project') {
-            sh 'mvn test'  // Exécute les tests unitaires
+            sh 'mvn test' 
         }
     }
 }
