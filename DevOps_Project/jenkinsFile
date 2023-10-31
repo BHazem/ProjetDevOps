@@ -23,6 +23,20 @@ pipeline {
                 }
             }
         }
+  stage('Generate JaCoCo Coverage Report') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn jacoco:report'
+            }
+        }
+    }
+    stage('MVN SONARQUBE') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+            }
+        }
+    }
     }
     post {
         always {
@@ -40,18 +54,5 @@ pipeline {
             }
         }
     }
-    stage('Generate JaCoCo Coverage Report') {
-        steps {
-            dir('DevOps_Project') {
-                sh 'mvn jacoco:report'
-            }
-        }
-    }
-    stage('MVN SONARQUBE') {
-        steps {
-            dir('DevOps_Project') {
-                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
-            }
-        }
-    }
+  
 }
