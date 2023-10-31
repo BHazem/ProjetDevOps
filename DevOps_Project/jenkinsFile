@@ -23,18 +23,6 @@ pipeline {
                 }
             }
         }
-        stage('MVN SONARQUBE') {
-            steps {
-                dir('DevOps_Project') {
-                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
-                }
-            }
-        }
-    stage('Generate JaCoCo Coverage Report') {
-    steps {
-        sh 'mvn jacoco:report'
-    }
-        }
     }
     post {
         always {
@@ -49,6 +37,20 @@ pipeline {
                         -Dsonar.exclusions=vendor/**,resources/**,**/*.java \
                         -Dsonar.host.url=http://192.168.1.27:9000/"
                 }
+            }
+        }
+    }
+    stage('Generate JaCoCo Coverage Report') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn jacoco:report'
+            }
+        }
+    }
+    stage('MVN SONARQUBE') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
             }
         }
     }
