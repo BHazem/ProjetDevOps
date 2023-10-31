@@ -23,7 +23,7 @@ pipeline {
                 }
             }
         }
-stage("Testing Maven") {
+stage("Test Maven") {
     steps {
         script {
             def nodePath = tool name: 'Node.js', type: 'hudson.tools.InstallSourceProperty$Installable'
