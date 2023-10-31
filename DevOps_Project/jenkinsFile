@@ -46,7 +46,7 @@ pipeline {
                     sh "${scannerHome}/bin/sonar-scanner \
                         -Dsonar.login=admin \
                         -Dsonar.password=sonar \
-                        -Dsonar.jacoco.reportPaths=target/site/jacoco/jacoco.xml \
+                        -Dsonar.jacoco.reportPaths=target/jacoco.exec \
                         -Dsonar.projectKey=DevOps_Project \
                         -Dsonar.exclusions=vendor/**,resources/**,**/*.java \
                         -Dsonar.host.url=http://192.168.1.27:9000/"
