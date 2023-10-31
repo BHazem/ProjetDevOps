@@ -23,6 +23,13 @@ pipeline {
                 }
             }
         }
+stage('Run Tests') {
+    steps {
+        dir('DevOps_Project') {
+            sh 'mvn test'  // Exécute les tests unitaires
+        }
+    }
+}
   stage('Generate JaCoCo Coverage Report') {
         steps {
             dir('DevOps_Project') {
