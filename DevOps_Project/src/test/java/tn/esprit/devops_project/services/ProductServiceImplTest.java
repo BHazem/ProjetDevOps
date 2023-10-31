@@ -65,8 +65,8 @@ class ProductServiceImplTest {
 
     @Test
     void deleteProduct() {
-        iProductService.deleteProduct(3L);
-        Product product = productRepository.findById(3L).orElse(null);
+        iProductService.deleteProduct(4L);
+        Product product = productRepository.findById(4L).orElse(null);
         assertThat(product).isNull();
     }
 
