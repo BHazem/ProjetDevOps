@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Product implements Serializable {
     @Id
@@ -25,4 +26,7 @@ public class Product implements Serializable {
     @ManyToOne
     @JsonIgnore
     Stock stock;
+
+    public Product(Long id,String p1, float v, int i, ProductCategory productCategory) {
+    }
 }
