@@ -26,7 +26,7 @@ pipeline{
 stage('Run Tests') {
     steps {
         dir('DevOps_Project') {
-            sh 'mvn test'  // Exécute les tests unitaires
+            sh 'mvn test'
         }
     }
 }
