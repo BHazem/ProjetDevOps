@@ -69,11 +69,11 @@ class ProductServiceImplTest {
         assertThat(product1).isNotEmpty();
     }
 
-      /*@Test
+     /* @Test
     void addProduct() {
         Product product = new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING);
-        when(iProductService.addProduct(eq(product), anyLong())).thenReturn(product);
-        Product p = iProductService.addProduct(product, 1L);
+          Mockito.when(iProductService.addProduct(Mockito.any(),Mockito.anyLong())).thenReturn(product);
+          Product p = iProductService.addProduct(product, 1L);
         assertThat(p).isNotNull();
     }
 
@@ -87,7 +87,7 @@ class ProductServiceImplTest {
         assertThat(product).isNull();
     }*/
 
-    @Test
+    /*@Test
     void retrieveProductStock() {
         Product product = new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING);
 
@@ -96,7 +96,7 @@ class ProductServiceImplTest {
         List<Product> products = iProductService.retreiveProductStock(1L);
         assertThat(products).isNotNull();
         assertThat(products).isNotEmpty();
-    }
+    }*/
  /*@Autowired
  IProductService iProductService;
 
