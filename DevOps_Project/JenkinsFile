@@ -1,67 +1,65 @@
-pipeline{
+pipeline {
     agent any
     stages {
-        stage("Testing Maven"){
+        stage("Testing Maven") {
             steps {
                 sh "mvn -version"
             }
         }
-        stage("Testing JDK"){
+        stage("Testing JDK") {
             steps {
                 sh "java -version"
             }
         }
-        stage("Chekout Git"){
+        stage("Checkout Git") {
             steps {
                 echo "Pulling"
             }
         }
         stage('MVN COMPILE') {
-            steps{
-                 dir('DevOps_Project') {
-                sh 'mvn compile'
+            steps {
+                dir('DevOps_Project') {
+                    sh 'mvn compile'
+                }
             }
         }
-}
-
 stage('Run Tests') {
     steps {
         dir('DevOps_Project') {
-            sh 'mvn test'
+            sh 'mvn test' 
         }
     }
 }
-stage('Generate JaCoCo Coverage Report') {
+  stage('Generate JaCoCo Coverage Report') {
         steps {
             dir('DevOps_Project') {
                 sh 'mvn jacoco:report'
             }
         }
     }
-     stage('MVN SONARQUBE') {
-            steps{
-                 dir('DevOps_Project') {
+    stage('MVN SONARQUBE') {
+        steps {
+            dir('DevOps_Project') {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
-            }}
+            }
         }
     }
-     post {
-            always {
-                script {
-                    def scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    withSonarQubeEnv('sonarqube') {
-                        sh "${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.login=admin \
-                            -Dsonar.password=sonar \
-                            -Dsonar.jacoco.reportPaths=DevOps_Project/target/site/jacoco/jacoco.xml \
-                            -D sonar.projectKey=DevOps_Project \
-                            -Dsonar.exclusions=vendor/**,resources/**,**/*.java \
-                            -Dsonar.host.url=http://172.20.10.5:9000/"
-
-                    }
+    }
+   post {
+        always {
+            script {
+                def scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                withSonarQubeEnv('sonarqube') {
+                    sh "${scannerHome}/bin/sonar-scanner \
+                        -Dsonar.login=admin \
+                        -Dsonar.password=sonar \
+                        -Dsonar.jacoco.reportPaths=DevOps_Project/target/site/jacoco/jacoco.xml \
+                        -Dsonar.projectKey=DevOps_Project \
+                        -Dsonar.exclusions=vendor/**,resources/**,**/*.java \
+                        -Dsonar.host.url=http://192.168.1.5:9000/"
                 }
             }
         }
-
-
+    }
+  
 }
