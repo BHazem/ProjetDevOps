@@ -18,7 +18,6 @@ class ActivitySectorImplTest {
 @Test
     public void retrieveAllActivitySectors()
     {
-
         List<ActivitySector> activitySectors = iActivitySector.retrieveAllActivitySectors();
         Assertions.assertEquals(0,activitySectors.size());
     }
