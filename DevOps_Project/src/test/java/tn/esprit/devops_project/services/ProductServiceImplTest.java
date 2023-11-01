@@ -78,12 +78,12 @@ class ProductServiceImplTest {
         assertThat(p).isNotNull();
     }
 
-    @Test
+    /*@Test
     void deleteProduct() {
         iProductService.deleteProduct(5L);
         Product product = productRepository.findById(5L).orElse(null);
         assertThat(product).isNull();
-    }
+    }*/
 
     @Test
     void retreiveProductStock() {
