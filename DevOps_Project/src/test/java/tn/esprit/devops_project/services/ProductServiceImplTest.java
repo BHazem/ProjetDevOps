@@ -1,36 +1,30 @@
 package tn.esprit.devops_project.services;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
+
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.devops_project.entities.Product;
 
 import tn.esprit.devops_project.entities.ProductCategory;
 import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.ProductRepository;
-import tn.esprit.devops_project.services.Iservices.IProductService;
+import tn.esprit.devops_project.repositories.StockRepository;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+
 
 
 @SpringBootTest
@@ -48,7 +42,8 @@ class ProductServiceImplTest {
     @Mock
     private ProductRepository productRepository;
 
-
+    @Mock
+    private StockRepository stockRepository;
 
     @Test
     void retreiveAllProduct() {
@@ -69,15 +64,22 @@ class ProductServiceImplTest {
         assertThat(product1).isNotEmpty();
     }
 
-     /* @Test
+    @Test
     void addProduct() {
+        Stock s = new Stock();
+        s.setIdStock(1L);
+        // Create a mock operator
         Product product = new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING);
-          Mockito.when(iProductService.addProduct(Mockito.any(),Mockito.anyLong())).thenReturn(product);
-          Product p = iProductService.addProduct(product, 1L);
-        assertThat(p).isNotNull();
-    }
 
-  @Test
+        // Stub the behavior of the mocked repository when saving an operator
+        Mockito.when(productRepository.save(product)).thenReturn(product);
+        Mockito.when(stockRepository.findByIdStock(Mockito.anyLong())).thenReturn(s);
+
+        Product result = iProductService.addProduct(product,1L);
+
+        assertThat(result).isNotNull();
+    }
+  /* @Test
     void deleteProduct() {
         when(productRepository.findById(1L)).thenReturn(Optional.empty());
 

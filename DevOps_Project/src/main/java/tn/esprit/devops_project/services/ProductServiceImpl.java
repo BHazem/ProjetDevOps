@@ -22,7 +22,7 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public Product addProduct(Product product, Long idStock) {
-        Stock stock = stockRepository.findById(idStock).orElseThrow(() -> new NullPointerException("stock not found"));
+        Stock stock = stockRepository.findByIdStock(idStock);
         product.setStock(stock);
         return productRepository.save(product);
     }
