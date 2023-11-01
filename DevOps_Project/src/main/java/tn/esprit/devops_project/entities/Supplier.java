@@ -30,7 +30,10 @@ public class Supplier implements Serializable {
 	Set<Invoice> invoices;
 	@ManyToMany
 	private Set<ActivitySector> activitySectors;
-    
 
-	
+	public Supplier(Long idSupplier, String code, String label) {
+		this.idSupplier = idSupplier;
+		this.code = code;
+		this.label = label;
+	}
 }
