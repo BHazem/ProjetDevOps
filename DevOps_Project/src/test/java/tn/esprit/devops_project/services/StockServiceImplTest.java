@@ -25,7 +25,7 @@ class StockServiceImplTest {
             add(new Stock(2L, "stock2"));
         }
     };*/
-
+/*
     @InjectMocks
     private StockServiceImpl stockService;
 
@@ -46,10 +46,10 @@ class StockServiceImplTest {
         Assertions.assertNotNull(list);
     }
 
+*/
 
 
 
-    /*
     @Autowired
     IStockService iStockService;
 
@@ -57,5 +57,5 @@ class StockServiceImplTest {
     public void testretrieveAllStock(){
         List<Stock> stocks = iStockService.retrieveAllStock();
         Assertions.assertEquals(0, stocks.size());
-    }*/
+    }
 }
