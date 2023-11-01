@@ -1,65 +1,59 @@
-pipeline {
+pipeline{
     agent any
     stages {
-        stage("Testing Maven") {
+        stage("Testing Maven"){
             steps {
                 sh "mvn -version"
             }
         }
-        stage("Testing JDK") {
+        stage("Testing JDK"){
             steps {
                 sh "java -version"
             }
         }
-        stage("Checkout Git") {
+        stage("Chekout Git"){
             steps {
                 echo "Pulling"
             }
         }
         stage('MVN COMPILE') {
-            steps {
-                dir('DevOps_Project') {
-                    sh 'mvn compile'
-                }
+            steps{
+                 dir('DevOps_Project') {
+                sh 'mvn compile'
             }
         }
-stage('Run Tests') {
+}
+stage('Build') {
     steps {
         dir('DevOps_Project') {
-            sh 'mvn test' 
+            sh 'mvn package'
         }
     }
 }
-  stage('Generate JaCoCo Coverage Report') {
+
+    stage('Unit Tests') {
         steps {
             dir('DevOps_Project') {
-                sh 'mvn jacoco:report'
+                sh 'mvn test'
             }
         }
     }
-    stage('MVN SONARQUBE') {
+    stage('JaCoCo Coverage Report') {
         steps {
             dir('DevOps_Project') {
-                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+                sh 'mvn jacoco:prepare-agent test jacoco:report'
             }
         }
     }
-    }
-   post {
-        always {
-            script {
-                def scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                withSonarQubeEnv('sonarqube') {
-                    sh "${scannerHome}/bin/sonar-scanner \
-                        -Dsonar.login=admin \
-                        -Dsonar.password=sonar \
-                        -Dsonar.jacoco.reportPaths=DevOps_Project/target/site/jacoco/jacoco.xml \
-                        -Dsonar.projectKey=DevOps_Project \
-                        -Dsonar.exclusions=vendor/**,resources/**,**/*.java \
-                        -Dsonar.host.url=http://192.168.1.5:9000/"
-                }
-            }
+
+
+
+     stage('MVN SONARQUBE') {
+            steps{
+                 dir('DevOps_Project') {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar -Dsonar.jacoco.reportPaths=target/site/jacoco/jacoco.xml'
+            }}
         }
     }
-  
+
 }
