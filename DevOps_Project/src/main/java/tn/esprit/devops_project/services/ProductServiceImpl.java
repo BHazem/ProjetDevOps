@@ -29,7 +29,7 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public Product retrieveProduct(Long id) {
-        return productRepository.findById(id).orElseThrow(() -> new NullPointerException("Product not found"));
+        return productRepository.findByIdProduct(id);
     }
 
     @Override
