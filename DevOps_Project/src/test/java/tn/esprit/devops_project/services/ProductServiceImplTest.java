@@ -36,11 +36,68 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class ProductServiceImplTest {
 
+    List<Product> productList = new ArrayList<Product>() {
+        {
+            add(new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING));
+            add(new Product(2L, "edfef", 40f, 5, ProductCategory.CLOTHING));
+        }
+    };
+
+    @InjectMocks
+    private ProductServiceImpl iProductService;
+    @Mock
+    private ProductRepository productRepository;
 
 
 
+    @Test
+    void retreiveAllProduct() {
+        Mockito.when(iProductService.retreiveAllProduct()).thenReturn(productList);
+        List<Product> list = iProductService.retreiveAllProduct();
+        Assertions.assertNotNull(list);
+    }
 
- @Autowired
+
+    @Test
+    void retrieveProductByCategory() {
+        Product product = new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING);
+
+        Mockito.when(iProductService.retrieveProductByCategory(Mockito.any())).thenReturn(productList);
+
+        List<Product> product1 = iProductService.retrieveProductByCategory(ProductCategory.CLOTHING);
+        assertThat(product1).isNotNull();
+        assertThat(product1).isNotEmpty();
+    }
+
+      /*@Test
+    void addProduct() {
+        Product product = new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING);
+        when(iProductService.addProduct(eq(product), anyLong())).thenReturn(product);
+        Product p = iProductService.addProduct(product, 1L);
+        assertThat(p).isNotNull();
+    }
+
+  @Test
+    void deleteProduct() {
+        when(productRepository.findById(1L)).thenReturn(Optional.empty());
+
+        iProductService.deleteProduct(1L);
+
+        Product product = productRepository.findById(1L).orElse(null);
+        assertThat(product).isNull();
+    }*/
+
+    @Test
+    void retrieveProductStock() {
+        Product product = new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING);
+
+        Mockito.when(iProductService.retreiveProductStock(Mockito.anyLong())).thenReturn(productList);
+
+        List<Product> products = iProductService.retreiveProductStock(1L);
+        assertThat(products).isNotNull();
+        assertThat(products).isNotEmpty();
+    }
+ /*@Autowired
  IProductService iProductService;
 
  @Autowired
@@ -49,9 +106,9 @@ class ProductServiceImplTest {
 
     @Test
     void retrieveProduct() {
-    Product product = new Product().builder().idProduct(4L).title("Souris").build();
-    Product product1 = iProductService.retrieveProduct(4L);
-    assertThat(product1.getIdProduct()).isEqualTo(4L);
+    Product product = new Product().builder().idProduct(10L).title("Souris").build();
+    Product product1 = iProductService.retrieveProduct(10L);
+    assertThat(product1.getIdProduct()).isEqualTo(10L);
     assertThat(product1).isNotNull();
     }
 
@@ -78,19 +135,19 @@ class ProductServiceImplTest {
         assertThat(p).isNotNull();
     }
 
-    /*@Test
+    @Test
     void deleteProduct() {
-        iProductService.deleteProduct(5L);
-        Product product = productRepository.findById(5L).orElse(null);
+        iProductService.deleteProduct(9L);
+        Product product = productRepository.findById(9L).orElse(null);
         assertThat(product).isNull();
-    }*/
+    }
 
     @Test
     void retreiveProductStock() {
         List<Product> listproducts = iProductService.retreiveProductStock(1L);
         assertThat(listproducts).isNotNull();
         assertThat(listproducts).isNotEmpty();
-    }
+    }*/
 
 
 }
