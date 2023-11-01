@@ -46,6 +46,13 @@ stage('Run Tests') {
             }
         }
     }
+        stage('Deploy') {
+            steps {
+         dir('DevOps_Project') {
+                sh 'mvn deploy -DskipTests'
+            }
+        }
+        }
     }
    post {
         always {
