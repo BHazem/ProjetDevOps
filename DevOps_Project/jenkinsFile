@@ -23,11 +23,35 @@ pipeline{
             }
         }
 }
+stage('Build') {
+    steps {
+        dir('DevOps_Project') {
+            sh 'mvn package'
+        }
+    }
+}
+
+    stage('Unit Tests') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn test'
+            }
+        }
+    }
+    stage('JaCoCo Coverage Report') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn jacoco:prepare-agent test jacoco:report'
+            }
+        }
+    }
+
+
 
      stage('MVN SONARQUBE') {
             steps{
                  dir('DevOps_Project') {
-                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar -Dsonar.jacoco.reportPaths=target/site/jacoco/jacoco.xml'
             }}
         }
     }
