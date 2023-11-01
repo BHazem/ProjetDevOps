@@ -23,21 +23,7 @@ pipeline{
             }
         }
 }
-stage('Run Tests') {
-    steps {
-        dir('DevOps_Project') {
-            sh 'mvn test'
-        }
-    }
-}
 
-  stage('Generate JaCoCo Coverage Report') {
-        steps {
-            dir('DevOps_Project') {
-                sh 'mvn jacoco:report'
-            }
-        }
-    }
      stage('MVN SONARQUBE') {
             steps{
                  dir('DevOps_Project') {

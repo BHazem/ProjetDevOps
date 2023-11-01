@@ -1,10 +1,12 @@
 package tn.esprit.devops_project.services;
 
+import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.devops_project.entities.Stock;
@@ -18,19 +20,15 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class StockServiceImplTest {
 
-
-   /* List<Stock> StockList = new ArrayList<Stock>() {
-        {
-            add(new Stock(1L, "stock1"));
-            add(new Stock(2L, "stock2"));
-        }
-    };*/
 /*
+
     @InjectMocks
     private StockServiceImpl stockService;
 
     @Mock
     private StockRepository stockRepository;
+
+
 
     @Test
     public void  retrieveAllStock(){
@@ -46,8 +44,8 @@ class StockServiceImplTest {
         Assertions.assertNotNull(list);
     }
 
-*/
 
+*/
 
 
     @Autowired
