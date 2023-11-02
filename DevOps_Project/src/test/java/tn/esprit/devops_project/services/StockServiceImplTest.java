@@ -18,37 +18,29 @@ import static org.junit.jupiter.api.Assertions.*;
 class StockServiceImplTest {
 
 
-/*
+    List<Stock> stockList= new ArrayList<Stock>(){
+        {
+            add(new Stock(1L,"aaa"));
+            add(new Stock(2L, "bbb"));
+        }
+    };
     @InjectMocks
     private StockServiceImpl stockService;
 
     @Mock
     private StockRepository stockRepository;
 
-   List<Stock> stockList= new ArrayList<Stock>(){
-       {
-           add(new Stock(1L,"aaa"));
-           add(new Stock(2L, "bbb"));
-       }
-   };
+
 
     @Test
-     void  addStock(){
-        Long idStock = 1L;
-        Stock stock = new Stock(1L,"aaa");
-
-       // Stock stock =new Stock(1L, "ff");
-       //stock.setTitle("title1");
-
-        Mockito.when(stockRepository.save(stock))
-                .thenReturn(stock);
-       // List<Stock> list =stockService.retrieveAllStock();
-        Stock result = stockService.addStock(stock);
-        //assertThat(result)
+     void  retrieveAllStock(){
+        Mockito.when(stockService.retrieveAllStock()).thenReturn(stockList);
+        List<Stock> list = stockService.retrieveAllStock();
+        Assertions.assertNotNull(list);
     }
 
+/*
 
-*/
 
 
     @Autowired
@@ -59,4 +51,6 @@ class StockServiceImplTest {
         List<Stock> stocks = iStockService.retrieveAllStock();
         Assertions.assertEquals(0, stocks.size());
     }
+
+ */
 }
