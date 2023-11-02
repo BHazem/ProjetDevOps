@@ -25,13 +25,6 @@ pipeline{
             }
         }
 }
-stage('Build') {
-    steps {
-        dir('DevOps_Project') {
-            sh 'mvn package'
-        }
-    }
-}
 
     stage('Unit Tests') {
         steps {
@@ -58,14 +51,6 @@ stage('Build') {
         }
     }
 
-    stage('Deploy') {
-               steps {
-            dir('DevOps_Project') {
-                   sh 'mvn deploy -DskipTests'
-               }
-           }
-           }
-       }
 
      post {
             always {
