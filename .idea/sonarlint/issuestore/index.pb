@@ -5,3 +5,15 @@
 VDevOps_Project/src/main/java/tn/esprit/devops_project/services/ActivitySectorImpl.java,2\2\22e09eec8037db72a31465d66e3b243320df346e
 ä
 ZDevOps_Project/src/test/java/tn/esprit/devops_project/services/ActivitySectorImplTest.java,f\f\ff76f0d269b8267a33268e2750bb6f4291da54d5
+Ñ
+TDevOps_Project/src/main/java/tn/esprit/devops_project/services/StockServiceImpl.java,1\7\17324a18a38951256ab38e29eadaed31db8cb704
+Ü
+VDevOps_Project/src/main/java/tn/esprit/devops_project/services/InvoiceServiceImpl.java,b\c\bc62b7262464294cc47a36ad42178d98144d6c52
+è
+_DevOps_Project/src/main/java/tn/esprit/devops_project/controllers/ActivitySectorController.java,9\4\945ddfcd045dba5d7527716589454cebab008a9a
+é
+^DevOps_Project/src/main/java/tn/esprit/devops_project/DevOps_ProjectSpringBootApplication.java,5\3\53a0649964a2b2a28c7698f78b72c77df9195bef
+á
+WDevOps_Project/src/main/java/tn/esprit/devops_project/services/SupplierServiceImpl.java,7\c\7c3e3c5f555086004db468e0ca2345cb540887a8
+F
+DevOps_Project/pom.xml,0\5\05d74d38eb7cba5952468b2028981ad1cad0141d
