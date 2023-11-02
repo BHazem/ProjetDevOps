@@ -31,9 +31,12 @@ public class Supplier implements Serializable {
 	@ManyToMany
 	private Set<ActivitySector> activitySectors;
 
-	public Supplier(Long idSupplier, String code, String label) {
+	public Supplier(long l, String s, String s1, SupplierCategory conventionne) {
+	}
+
+	/*public Supplier(Long idSupplier, String code, String label) {
 		this.idSupplier = idSupplier;
 		this.code = code;
 		this.label = label;
-	}
+	}*/
 }
