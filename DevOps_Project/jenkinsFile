@@ -23,13 +23,13 @@ pipeline {
                 }
             }
         }
-stage('Run Tests') {
-    steps {
-        dir('DevOps_Project') {
-            sh 'mvn test' 
+    stage('Unit Tests / Mockito') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn test'
+            }
         }
     }
-}
   stage('Generate JaCoCo Coverage Report') {
         steps {
             dir('DevOps_Project') {
