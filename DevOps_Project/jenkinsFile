@@ -11,6 +11,11 @@ pipeline{
                 sh "java -version"
             }
         }
+         stage("Checkout Git") {
+                    steps {
+                        echo "Pulling"
+                    }
+                }
          stage("Mvn clean") {
              steps {
                   dir('DevOps_Project') {
