@@ -79,15 +79,12 @@ class ProductServiceImplTest {
 
         assertThat(result).isNotNull();
     }
-  /* @Test
+   @Test
     void deleteProduct() {
-        when(productRepository.findById(1L)).thenReturn(Optional.empty());
-
-        iProductService.deleteProduct(1L);
-
-        Product product = productRepository.findById(1L).orElse(null);
-        assertThat(product).isNull();
-    }*/
+       Long ProductId = 1L;
+        iProductService.deleteProduct(ProductId);
+       Mockito.verify(productRepository, Mockito.times(1)).deleteById(ProductId);
+   }
 
     @Test
     void retrieveProduct() {
