@@ -76,7 +76,7 @@ stage('Push Docker Image') {
             def dockerPassword = 'ETOILESPORTIVEDUSAHEL1925'
             sh "docker login -u $dockerUsername -p $dockerPassword"
             dir('DevOps_Project') {
-                sh 'docker tag devops_project koukihoussem/devops_project:latest'
+                sh 'docker tag devops_project bayoudhhazem/devops_project:latest'
                 sh 'docker push koukihoussem/devops_project:latest'
             }
         }
