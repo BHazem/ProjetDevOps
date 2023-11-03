@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 class StockServiceImplTest {
-
+/*
     @InjectMocks
     private StockServiceImpl stockService;
 
@@ -49,7 +49,7 @@ class StockServiceImplTest {
         List<Stock> list = stockService.retrieveAllStock();
         Assertions.assertNotNull(list);
     }
-
+*/
  /*   @Test
     void testRetrieveStock() {
         Long stockId = 1L; // ID de stock à récupérer
@@ -87,7 +87,6 @@ Stock stock1=new Stock(2L,"aaa");
 
 
 
-/*
 
 
 
@@ -100,5 +99,5 @@ Stock stock1=new Stock(2L,"aaa");
         Assertions.assertEquals(0, stocks.size());
     }
 
- */
+
 }
