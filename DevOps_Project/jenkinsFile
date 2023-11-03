@@ -66,7 +66,7 @@ stage('Run Tests') {
              script {
             // Utilisation de la commande docker build pour construire l'image
              dir('DevOps_Project') {
-                sh 'docker build -t devops_project .'
+                sh 'sudo docker build -t devops_project .'
              }
         }
     }
