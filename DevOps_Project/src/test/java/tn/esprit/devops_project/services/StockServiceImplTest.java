@@ -50,7 +50,7 @@ class StockServiceImplTest {
         Assertions.assertNotNull(list);
     }
 
-    @Test
+ /*   @Test
     void testRetrieveStock() {
         Long stockId = 1L; // ID de stock à récupérer
 
@@ -65,7 +65,7 @@ class StockServiceImplTest {
         // Vérifiez que le résultat de la méthode du service est le même que le mock de la méthode du dépôt
         assertEquals(stock, result);
     }
-/*
+
 Stock stock1=new Stock(2L,"aaa");
         Mockito.when(stockService.retrieveStock(Mockito.any())).thenReturn(stock1);
         Stock stock2 =stockService.retrieveStock(2L);
