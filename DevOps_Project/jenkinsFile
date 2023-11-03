@@ -69,6 +69,19 @@ stage('Run Tests') {
              }
     }
 }
+stage('Push Docker Image') {
+    steps {
+        script {
+            def dockerUsername = 'bayoudhhazem'
+            def dockerPassword = 'ETOILESPORTIVEDUSAHEL1925'
+            sh "docker login -u $dockerUsername -p $dockerPassword"
+            dir('DevOps_Project') {
+                sh 'docker tag devops_project koukihoussem/devops_project:latest'
+                sh 'docker push koukihoussem/devops_project:latest'
+            }
+        }
+    }
+}
 
     }
    post {
