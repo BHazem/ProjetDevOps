@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.devops_project.services.Iservices.IStockService;
 import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.StockRepository;
+import javax.persistence.EntityNotFoundException; // Import the EntityNotFoundException class
 
 import java.util.List;
 
@@ -21,8 +22,7 @@ public class StockServiceImpl implements IStockService {
 
     @Override
     public Stock retrieveStock(Long id) {
-        return stockRepository.findById(id).orElseThrow(() -> new NullPointerException("Stock not found"));
-    }
+        return stockRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Stock with ID " + id + " not found"));    }
 
     @Override
     public List<Stock> retrieveAllStock() {
