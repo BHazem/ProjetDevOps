@@ -28,8 +28,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-
-@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 class ProductServiceImplTest {
 
@@ -58,7 +56,6 @@ class ProductServiceImplTest {
 
     @Test
     void retrieveProductByCategory() {
-        Product product = new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING);
 
         Mockito.when(iProductService.retrieveProductByCategory(Mockito.any())).thenReturn(productList);
 
@@ -102,7 +99,6 @@ class ProductServiceImplTest {
 
     @Test
     void retrieveProductStock() {
-        Product product = new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING);
 
         Mockito.when(iProductService.retreiveProductStock(Mockito.anyLong())).thenReturn(productList);
 
