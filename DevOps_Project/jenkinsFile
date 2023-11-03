@@ -45,6 +45,13 @@ pipeline {
         }
     }
     }
+        stage('Deploy') {
+            steps {
+         dir('DevOps_Project') {
+                sh 'mvn deploy -DskipTests -DaltDeploymentRepository=deploymentRepo::default::http://localhost:8081/repository/maven-releases/'
+            }
+        }
+        }
    post {
         always {
             script {
