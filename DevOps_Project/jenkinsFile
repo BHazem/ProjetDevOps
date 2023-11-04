@@ -20,9 +20,9 @@ pipeline{
              steps {
                  dir('DevOps_Project') {
                         sh 'mvn clean'
-                                        }
-                                    }
-                                }
+    }
+  }
+ }
 
         stage('MVN COMPILE') {
             steps{
@@ -47,8 +47,6 @@ pipeline{
             }
         }
     }
-
-
 
      stage('MVN SONARQUBE') {
             steps{
