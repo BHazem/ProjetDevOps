@@ -19,7 +19,7 @@ pipeline{
          stage("Mvn clean") {
              steps {
                   dir('DevOps_Project') {
-                       sh 'mvn clean'
+                       sh 'mvn clean install'
                         }
                     }
                 }
@@ -55,14 +55,8 @@ pipeline{
             }}
         }
     }
-     stage('MVN Install') {
-                steps {
-                    dir('DevOps_Project') {
-                        sh 'mvn install'
-                    }
-                }
-            }
     
+
   post {
         always {
             script {
