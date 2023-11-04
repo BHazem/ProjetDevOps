@@ -16,6 +16,13 @@ pipeline{
                         echo "Pulling"
                     }
                 }
+         stage("Mvn clean") {
+             steps {
+                 dir('DevOps_Project') {
+                        sh 'mvn clean'
+                                        }
+                                    }
+                                }
 
         stage('MVN COMPILE') {
             steps{
@@ -24,13 +31,7 @@ pipeline{
             }
         }
 }
-  stage("Mvn clean") {
-             steps {
-                  dir('DevOps_Project') {
-                       sh 'mvn clean install'
-                        }
-                    }
-                }
+
 
     stage('Unit Tests / Mockito') {
         steps {
@@ -57,14 +58,14 @@ pipeline{
         }
 
 
-     stage('Deploy') {
-                steps {
-             dir('DevOps_Project') {
-                    sh 'mvn deploy -DskipTests -DaltDeploymentRepository=deploymentRepo::default::http://localhost:8081/repository/maven-releases/'
-                }
-            }
-            }
-            }
+    stage('Deploy') {
+              steps {
+           dir('DevOps_Project') {
+                  sh 'mvn deploy -DskipTests'
+              }
+          }
+          }
+}
   post {
         always {
             script {
