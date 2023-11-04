@@ -55,13 +55,6 @@ pipeline{
             }}
         }
 
- stage('MVN Install') {
-            steps {
-                dir('DevOps_Project') {
-                    sh 'mvn install'
-                }
-            }
-        }
      stage('Deploy') {
                 steps {
              dir('DevOps_Project') {
