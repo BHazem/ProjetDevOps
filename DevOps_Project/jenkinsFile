@@ -54,7 +54,7 @@ stage('Run Tests') {
                     sh 'mvn install'
                 }
             }
-        }
+        }*/
        stage('Deploy') {
             steps {
          dir('DevOps_Project') {
@@ -81,7 +81,7 @@ stage('Push Docker Image') {
             }
         }
     }
-}*/
+}
 stage('Docker Compose') {
             steps {
                  dir('DevOps_Project') {
