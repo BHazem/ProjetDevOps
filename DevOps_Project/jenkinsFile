@@ -68,9 +68,9 @@ pipeline{
         always {
             script {
                 def scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                def nodejsHome = tool name: 'nodejs' , type: 'hudson.plugins.nodejs.tools.NodeJSInstallation'
+//                def nodejsHome = tool name: 'nodejs' , type: 'hudson.plugins.nodejs.tools.NodeJSInstallation'
                 withSonarQubeEnv('sonarqube') {
-                    sh "${nodejsHome}/bin/node --version/"
+                 //   sh "${nodejsHome}/bin/node --version/"
                     sh "${scannerHome}/bin/sonar-scanner \
                         -Dsonar.login=admin \
                         -Dsonar.password=sonar \
