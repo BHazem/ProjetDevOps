@@ -25,13 +25,14 @@ pipeline {
                 }
             }
         }
-stage('Run Tests') {
-    steps {
-        dir('DevOps_Project') {
-            sh 'mvn test' 
+
+    stage('MVN Install') {
+            steps {
+                dir('DevOps_Project') {
+                    sh 'mvn install'
+                }
+            }
         }
-    }
-}
   stage('Generate JaCoCo Coverage Report') {
         steps {
             dir('DevOps_Project') {
@@ -46,13 +47,7 @@ stage('Run Tests') {
             }
         }
     }
-    stage('MVN Install') {
-            steps {
-                dir('DevOps_Project') {
-                    sh 'mvn install'
-                }
-            }
-        }
+
         stage('Deploy') {
             steps {
          dir('DevOps_Project') {
@@ -89,6 +84,13 @@ stage('Docker Compose') {
                   }
             }
         }
+stage('Run Tests') {
+    steps {
+        dir('DevOps_Project') {
+            sh 'mvn test' 
+        }
+    }
+}
     }
    post {
         always {
