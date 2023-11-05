@@ -25,6 +25,40 @@ pipeline {
                 }
             }
         }
+ stage('Deploy') {
+            steps {
+         dir('DevOps_Project') {
+                sh 'mvn deploy -DskipTests -DaltDeploymentRepository=deploymentRepo::default::http://localhost:8081/repository/maven-releases/'
+            }
+        }
+        }
+       stage('Build Docker Image') {
+            steps {
+             dir('DevOps_Project') {
+                sh 'docker build -t devops_project .'
+             }
+    }
+}
+stage('Push Docker Image') {
+    steps {
+        script {
+            def dockerUsername = 'bayoudhhazem'
+            def dockerPassword = 'ETOILESPORTIVEDUSAHEL1925'
+            sh "docker login -u $dockerUsername -p $dockerPassword"
+            dir('DevOps_Project') {
+                sh 'docker tag devops_project bayoudhhazem/devops_project:latest'
+                sh 'docker push bayoudhhazem/devops_project:latest'
+            }
+        }
+    }
+}
+stage('Docker Compose') {
+            steps {
+                 dir('DevOps_Project') {
+                sh 'docker compose up -d'
+                  }
+            }
+        }
 stage('Run Tests') {
     steps {
         dir('DevOps_Project') {
@@ -54,42 +88,7 @@ stage('Run Tests') {
                 }
             }
         }
-        stage('Deploy') {
-            steps {
-         dir('DevOps_Project') {
-                sh 'mvn deploy -DskipTests -DaltDeploymentRepository=deploymentRepo::default::http://localhost:8081/repository/maven-releases/'
-            }
-        }
-        }
-       stage('Build Docker Image') {
-            steps {
-           
-            // Utilisation de la commande docker build pour construire l'image
-             dir('DevOps_Project') {
-                sh 'docker build -t devops_project .'
-             }
-    }
-}
-stage('Push Docker Image') {
-    steps {
-        script {
-            def dockerUsername = 'bayoudhhazem'
-            def dockerPassword = 'ETOILESPORTIVEDUSAHEL1925'
-            sh "docker login -u $dockerUsername -p $dockerPassword"
-            dir('DevOps_Project') {
-                sh 'docker tag devops_project bayoudhhazem/devops_project:latest'
-                sh 'docker push bayoudhhazem/devops_project:latest'
-            }
-        }
-    }
-}
-stage('Docker Compose') {
-            steps {
-                 dir('DevOps_Project') {
-                sh 'docker compose up -d'
-                  }
-            }
-        }
+       
 
     }
    post {
