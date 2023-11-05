@@ -1,9 +1,5 @@
 pipeline{
     agent any
-    environment {
-      scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-      nodejsHome = tool name: 'nodejs' , type: 'hudson.plugins.nodejs.tools.NodeJSInstallation'
-                    }
     stages {
         stage("Testing Maven"){
             steps {
@@ -71,7 +67,9 @@ pipeline{
   post {
         always {
             script {
-               withSonarQubeEnv('sonarqube') {
+                def scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                def nodejsHome = tool name: 'nodejs' , type: 'hudson.plugins.nodejs.tools.NodeJSInstallation'
+                withSonarQubeEnv('sonarqube') {
                     sh "${nodejsHome}/bin/node --version/"
                     sh "${scannerHome}/bin/sonar-scanner \
                         -Dsonar.login=admin \
