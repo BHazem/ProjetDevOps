@@ -121,7 +121,7 @@ class ProductServiceImplTest {
     @Test
     @Order(5)
     void retrieveProduct() {
-    Product product1 = iProductService.retrieveProduct(1L);
+    Product product1 = iProductService.retrieveProduct(11L);
     assertThat(product1).isNotNull();
     }
 
