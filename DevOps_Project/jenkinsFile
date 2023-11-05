@@ -25,7 +25,37 @@ pipeline {
                 }
             }
         }
- stage('Deploy') {
+ 
+stage('Run Tests') {
+    steps {
+        dir('DevOps_Project') {
+            sh 'mvn test' 
+        }
+    }
+}
+  
+  stage('Generate JaCoCo Coverage Report') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn jacoco:report'
+            }
+        }
+    }
+    stage('MVN SONARQUBE') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+            }
+        }
+    }
+  stage('MVN Install') {
+            steps {
+                dir('DevOps_Project') {
+                    sh 'mvn install'
+                }
+            }
+        }
+       stage('Deploy') {
             steps {
          dir('DevOps_Project') {
                 sh 'mvn deploy -DskipTests -DaltDeploymentRepository=deploymentRepo::default::http://localhost:8081/repository/maven-releases/'
@@ -59,36 +89,6 @@ stage('Docker Compose') {
                   }
             }
         }
-stage('Run Tests') {
-    steps {
-        dir('DevOps_Project') {
-            sh 'mvn test' 
-        }
-    }
-}
-  
-  stage('Generate JaCoCo Coverage Report') {
-        steps {
-            dir('DevOps_Project') {
-                sh 'mvn jacoco:report'
-            }
-        }
-    }
-    stage('MVN SONARQUBE') {
-        steps {
-            dir('DevOps_Project') {
-                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
-            }
-        }
-    }
-  stage('MVN Install') {
-            steps {
-                dir('DevOps_Project') {
-                    sh 'mvn install'
-                }
-            }
-        }
-       
 
     }
    post {
