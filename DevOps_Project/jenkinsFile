@@ -11,7 +11,7 @@ pipeline {
                 sh "java -version"
             }
         }
-        stage("Mvn clean") {
+       /* stage("Mvn clean") {
             steps {
                 dir('DevOps_Project') {
                     sh 'mvn clean'
@@ -81,12 +81,20 @@ stage('Push Docker Image') {
             }
         }
     }
-}
+}*/
 stage('Docker Compose') {
             steps {
                  dir('DevOps_Project') {
                 sh 'docker compose up -d'
                   }
+            }
+        }
+
+ stage('PS') {
+            steps {
+                dir('DevOps_Project') {
+                    sh 'docker compose ps'
+                }
             }
         }
 
