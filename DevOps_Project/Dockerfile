@@ -1,5 +1,4 @@
-FROM openjdk:11
-EXPOSE 8088
-ARG NEXUS_URL=http://192.168.1.27:8081/repository/maven-releases/tn/esprit/DevOps_Project/2.1/DevOps_Project-2.1.jar
-RUN wget -O /DevOps_Project-2.1.jar $NEXUS_URL
-CMD ["java", "-jar", "/DevOps_Project-2.1.jar"]
+FROM openjdk:8
+EXPOSE 8082
+ADD target/DevOps_Project-2.1.jar devops_project.jar
+ENTRYPOINT ["java" , "-jar" ,"devops_project.jar"]
