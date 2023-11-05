@@ -91,7 +91,7 @@ stage('Docker Compose') {
         }
 
     }
- /*  post {
+   post {
         always {
             script {
                 def scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
@@ -106,6 +106,6 @@ stage('Docker Compose') {
                 }
             }
         }
-    }*/
+    }
   
 }
