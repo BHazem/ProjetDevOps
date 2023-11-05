@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.devops_project.entities.Product;
 
@@ -18,6 +19,7 @@ import tn.esprit.devops_project.entities.ProductCategory;
 import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.ProductRepository;
 import tn.esprit.devops_project.repositories.StockRepository;
+import tn.esprit.devops_project.services.Iservices.IProductService;
 
 
 import java.util.ArrayList;
@@ -27,11 +29,11 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
+//@ExtendWith(MockitoExtension.class)
 class ProductServiceImplTest {
 
-    List<Product> productList = new ArrayList<Product>() {
+  /*  List<Product> productList = new ArrayList<Product>() {
         {
             add(new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING));
             add(new Product(2L, "edfef", 40f, 5, ProductCategory.CLOTHING));
@@ -105,13 +107,15 @@ class ProductServiceImplTest {
         List<Product> products = iProductService.retreiveProductStock(1L);
         assertThat(products).isNotNull();
         assertThat(products).isNotEmpty();
-    }
- /*@Autowired
- IProductService iProductService;
+    }*/
+ @Autowired
+  IProductService iProductService;
 
  @Autowired
  ProductRepository productRepository;
 
+    @Autowired
+    private StockRepository stockRepository;
 
     @Test
     void retrieveProduct() {
@@ -137,26 +141,26 @@ class ProductServiceImplTest {
     }
 
 
-    @Test
+    /*@Test
     void addProduct() {
         Product product = new Product().builder().price(50f).quantity(5).category(ProductCategory.CLOTHING).title("Souris").build();
         Product p = iProductService.addProduct(product,1L);
         assertThat(p).isNotNull();
-    }
+    }*/
 
-    @Test
+    /*@Test
     void deleteProduct() {
         iProductService.deleteProduct(9L);
         Product product = productRepository.findById(9L).orElse(null);
         assertThat(product).isNull();
-    }
+    }*/
 
     @Test
     void retreiveProductStock() {
         List<Product> listproducts = iProductService.retreiveProductStock(1L);
         assertThat(listproducts).isNotNull();
         assertThat(listproducts).isNotEmpty();
-    }*/
+    }
 
 
 }
