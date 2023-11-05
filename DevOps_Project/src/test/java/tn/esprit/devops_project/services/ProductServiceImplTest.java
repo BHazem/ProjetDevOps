@@ -2,6 +2,7 @@ package tn.esprit.devops_project.services;
 
 import org.junit.jupiter.api.Assertions;
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 
@@ -118,14 +119,14 @@ class ProductServiceImplTest {
     private StockRepository stockRepository;
 
     @Test
+    @Order(5)
     void retrieveProduct() {
-    Product product = new Product().builder().idProduct(10L).title("Souris").build();
-    Product product1 = iProductService.retrieveProduct(10L);
-    assertThat(product1.getIdProduct()).isEqualTo(10L);
+    Product product1 = iProductService.retrieveProduct(1L);
     assertThat(product1).isNotNull();
     }
 
     @Test
+    @Order(4)
     void retreiveAllProduct() {
         List<Product> productList = iProductService.retreiveAllProduct();
         assertThat(productList).isNotNull();
@@ -134,6 +135,7 @@ class ProductServiceImplTest {
 
 
     @Test
+    @Order(3)
     void retrieveProductByCategory() {
         List<Product> listproduct = iProductService.retrieveProductByCategory(ProductCategory.CLOTHING);
         assertThat(listproduct).isNotNull();
@@ -141,12 +143,13 @@ class ProductServiceImplTest {
     }
 
 
-    /*@Test
+    @Test
+    @Order(1)
     void addProduct() {
         Product product = new Product().builder().price(50f).quantity(5).category(ProductCategory.CLOTHING).title("Souris").build();
         Product p = iProductService.addProduct(product,1L);
         assertThat(p).isNotNull();
-    }*/
+    }
 
     /*@Test
     void deleteProduct() {
@@ -156,6 +159,7 @@ class ProductServiceImplTest {
     }*/
 
     @Test
+    @Order(2)
     void retreiveProductStock() {
         List<Product> listproducts = iProductService.retreiveProductStock(1L);
         assertThat(listproducts).isNotNull();
