@@ -90,6 +90,14 @@ stage('Docker Compose') {
             }
         }
 
+ stage('PS') {
+            steps {
+                dir('DevOps_Project') {
+                    sh 'docker compose ps'
+                }
+            }
+        }
+
     }
    post {
         always {
