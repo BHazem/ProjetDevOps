@@ -28,6 +28,13 @@ services:
       - 3306:3306
     volumes:
       - db:/var/lib/mysql
+  adminer:
+    container_name: adminer
+    # image: adminer:latest
+    image: adminer:4.6.2
+    restart: always
+    ports:
+      - "8085:8080"
 volumes:
   app_data:
   db:
