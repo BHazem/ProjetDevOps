@@ -44,12 +44,17 @@ pipeline {
             }
         }
     }
+<<<<<<< HEAD
      /* stage('Deploy') {
+=======
+       stage('Deploy') {
+>>>>>>> 1c385711ba25f21466d748c36fe7c9674ddc33cf
             steps {
          dir('DevOps_Project') {
                 sh 'mvn deploy -DskipTests -DaltDeploymentRepository=deploymentRepo::default::http://localhost:8081/repository/maven-releases/'
             }
         }
+<<<<<<< HEAD
         }*/
           stage('Build Docker Image') {
                     steps {
@@ -86,6 +91,9 @@ pipeline {
                         }
                     }
                 }
+=======
+        }
+>>>>>>> 1c385711ba25f21466d748c36fe7c9674ddc33cf
 }
    post {
         always {
@@ -98,7 +106,7 @@ pipeline {
                         -Dsonar.jacoco.reportPaths=DevOps_Project/target/site/jacoco/jacoco.xml \
                         -Dsonar.projectKey=DevOps_Project \
                         -Dsonar.exclusions=vendor/**,resources/**,**/*.java \
-                        -Dsonar.host.url=http://192.168.1.5:9000/"
+                        -Dsonar.host.url=http://192.168.31.104/:9000/"
                 }
             }
         }
