@@ -62,13 +62,12 @@ class ProductServiceImplTest {
     }
 
 
-   @Test
+    @Test
     void deleteProductMock() {
-       Long ProductId = 1L;
-       Mockito.when(iProductServicee.deleteProduct(Mockito.any())).thenReturn("deleted");
-       String result = iProductServicee.deleteProduct(ProductId);
-       assertThat(result).isNotNull();
-   }
+        Long productId = 1L;
+        Mockito.doNothing().when(iProductServicee).deleteProduct(Mockito.any());
+        iProductServicee.deleteProduct(productId);
+    }
 
     @Test
     void retrieveProductMock() {
