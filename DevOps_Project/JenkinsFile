@@ -16,21 +16,6 @@ pipeline{
                 echo "Pulling"
             }
         }
-        stage('MVN COMPILE') {
-            steps{
-                 dir('DevOps_Project') {
-                sh 'mvn compile'
-            }
-        }
-}
-
-  stage('MVN test') {
-            steps{
-                 dir('DevOps_Project') {
-                sh 'mvn test'
-            }
-        }
-}
 
 
      stage('MVN SONARQUBE') {
