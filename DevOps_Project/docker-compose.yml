@@ -1,0 +1,31 @@
+version: "3"
+services:
+  DevOps_Project:
+    container_name: DevOps_Project
+    image: farahkamoun/devops_project
+    restart: on-failure
+    environment:
+      SPRING_APPLICATION_JSON: '{
+      "spring.datasource.url" : "jdbc:mysql://mysqldb:3306/devops?createDatabaseIfNotExist=true",
+      "spring.datasource.username" : "root"
+      }'
+    ports:
+      - 8082:8082
+    depends_on:
+      - mysqldb
+    volumes:
+      - app_data:/app/data
+
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:5.7
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_DATABASE: devops
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+volumes:
+  app_data:
+  db:
