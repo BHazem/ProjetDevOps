@@ -17,3 +17,9 @@ _DevOps_Project/src/main/java/tn/esprit/devops_project/controllers/ActivitySecto
 WDevOps_Project/src/main/java/tn/esprit/devops_project/services/SupplierServiceImpl.java,7\c\7c3e3c5f555086004db468e0ca2345cb540887a8
 F
 DevOps_Project/pom.xml,0\5\05d74d38eb7cba5952468b2028981ad1cad0141d
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+J
+DevOps_Project/JenkinsFile,e\8\e8ba20f4f52186627b8ac4d54e3df061caa805b6
