@@ -31,10 +31,10 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-//@ExtendWith(MockitoExtension.class)
+@ExtendWith(MockitoExtension.class)
 class ProductServiceImplTest {
 
-  /*  List<Product> productList = new ArrayList<Product>() {
+   List<Product> productList = new ArrayList<Product>() {
         {
             add(new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING));
             add(new Product(2L, "edfef", 40f, 5, ProductCategory.CLOTHING));
@@ -42,73 +42,72 @@ class ProductServiceImplTest {
     };
 
     @InjectMocks
-    private ProductServiceImpl iProductService;
+    private ProductServiceImpl iProductServicee;
     @Mock
-    private ProductRepository productRepository;
+    private ProductRepository productRepositoryy;
 
     @Mock
-    private StockRepository stockRepository;
+    private StockRepository stockRepositoryy;
 
     @Test
-    void retreiveAllProduct() {
-        Mockito.when(iProductService.retreiveAllProduct()).thenReturn(productList);
-        List<Product> list = iProductService.retreiveAllProduct();
+    void retreiveAllProductMock() {
+        Mockito.when(iProductServicee.retreiveAllProduct()).thenReturn(productList);
+        List<Product> list = iProductServicee.retreiveAllProduct();
         Assertions.assertNotNull(list);
     }
 
 
     @Test
-    void retrieveProductByCategory() {
-
-        Mockito.when(iProductService.retrieveProductByCategory(Mockito.any())).thenReturn(productList);
-
-        List<Product> product1 = iProductService.retrieveProductByCategory(ProductCategory.CLOTHING);
+    void retrieveProductByCategoryMock() {
+        Mockito.when(iProductServicee.retrieveProductByCategory(Mockito.any())).thenReturn(productList);
+        List<Product> product1 = iProductServicee.retrieveProductByCategory(ProductCategory.CLOTHING);
         assertThat(product1).isNotNull();
         assertThat(product1).isNotEmpty();
     }
 
     @Test
-    void addProduct() {
+    void addProductMock() {
         Stock s = new Stock();
         s.setIdStock(1L);
         // Create a mock operator
         Product product = new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING);
 
         // Stub the behavior of the mocked repository when saving an operator
-        Mockito.when(productRepository.save(product)).thenReturn(product);
-        Mockito.when(stockRepository.findByIdStock(Mockito.anyLong())).thenReturn(s);
+        Mockito.when(productRepositoryy.save(product)).thenReturn(product);
+        Mockito.when(stockRepositoryy.findByIdStock(Mockito.anyLong())).thenReturn(s);
 
-        Product result = iProductService.addProduct(product,1L);
+        Product result = iProductServicee.addProduct(product,1L);
 
         assertThat(result).isNotNull();
     }
    @Test
-    void deleteProduct() {
+    void deleteProductMock() {
        Long ProductId = 1L;
-        iProductService.deleteProduct(ProductId);
-       Mockito.verify(productRepository, Mockito.times(1)).deleteById(ProductId);
+        iProductServicee.deleteProduct(ProductId);
+       Mockito.verify(productRepositoryy, Mockito.times(1)).deleteById(ProductId);
    }
 
     @Test
-    void retrieveProduct() {
+    void retrieveProductMock() {
         Product product = new Product(2L, "regg", 50f, 4, ProductCategory.CLOTHING);
 
-        Mockito.when(iProductService.retrieveProduct(Mockito.any())).thenReturn(product);
+        Mockito.when(iProductServicee.retrieveProduct(Mockito.any())).thenReturn(product);
 
-        Product product1 = iProductService.retrieveProduct(2L);
+        Product product1 = iProductServicee.retrieveProduct(2L);
         assertThat(product1.getIdProduct()).isEqualTo(2L);
         assertThat(product1).isNotNull();
     }
 
     @Test
-    void retrieveProductStock() {
+    void retrieveProductStockMock() {
 
-        Mockito.when(iProductService.retreiveProductStock(Mockito.anyLong())).thenReturn(productList);
+        Mockito.when(iProductServicee.retreiveProductStock(Mockito.anyLong())).thenReturn(productList);
 
-        List<Product> products = iProductService.retreiveProductStock(1L);
+        List<Product> products = iProductServicee.retreiveProductStock(1L);
         assertThat(products).isNotNull();
         assertThat(products).isNotEmpty();
-    }*/
+    }
+
  @Autowired
   IProductService iProductService;
 
