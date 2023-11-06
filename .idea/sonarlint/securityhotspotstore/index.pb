@@ -23,3 +23,19 @@ S
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 J
 DevOps_Project/JenkinsFile,e\8\e8ba20f4f52186627b8ac4d54e3df061caa805b6
+O
+DevOps_Project_Front/Dockerfile,0\3\03b49e9854185acba84e9331e2eec5d3417270f0
+I
+DevOps_Project/Dockerfile,0\b\0b1256adeedef4f6f70e8891b750585a37192bc7
+ç
+]DevOps_Project/src/main/java/tn/esprit/devops_project/services/Iservices/IInvoiceService.java,1\5\158ab3cf9eb8460af8d43c48002c359928712151
+ê
+`DevOps_Project/src/main/java/tn/esprit/devops_project/repositories/ActivitySectorRepository.java,4\a\4ae87427265b2fe4adb7d62a89a75b552748654a
+Ç
+RDevOps_Project/src/main/java/tn/esprit/devops_project/entities/ActivitySector.java,4\6\466e320a0d51434bbf58ef7c249c15224a7ee294
+r
+BDevOps_Project/src/main/java/tn/esprit/devops_project/openapi.yaml,4\e\4ef250a3bec102165f0119acfb8ba6a63c28b636
+s
+CDevOps_Project/out/production/DevOps_Project/application.properties,4\5\45dced390fb6185fa1b159f2c3d51ed11e8e9d5e
+ç
+]DevOps_Project/src/main/java/tn/esprit/devops_project/services/Iservices/IActivitySector.java,7\b\7be4d1c9b4428aa540953cbc17aef9a7df06fba2
