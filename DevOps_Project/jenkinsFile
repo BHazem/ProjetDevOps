@@ -44,18 +44,16 @@ pipeline {
             }
         }
     }
-<<<<<<< HEAD
+
      /* stage('Deploy') {
-=======
        stage('Deploy') {
->>>>>>> 1c385711ba25f21466d748c36fe7c9674ddc33cf
             steps {
          dir('DevOps_Project') {
                 sh 'mvn deploy -DskipTests -DaltDeploymentRepository=deploymentRepo::default::http://localhost:8081/repository/maven-releases/'
             }
         }
-<<<<<<< HEAD
-        }*/
+        }
+}*/
           stage('Build Docker Image') {
                     steps {
                      dir('DevOps_Project') {
@@ -91,10 +89,9 @@ pipeline {
                         }
                     }
                 }
-=======
+
         }
->>>>>>> 1c385711ba25f21466d748c36fe7c9674ddc33cf
-}
+
    post {
         always {
             script {
