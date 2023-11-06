@@ -62,12 +62,6 @@ class ProductServiceImplTest {
     }
 
 
-    @Test
-    void deleteProductMock() {
-        Long productId = 1L;
-        Mockito.doNothing().when(iProductServicee).deleteProduct(Mockito.any());
-        iProductServicee.deleteProduct(productId);
-    }
 
     @Test
     void retrieveProductMock() {
@@ -128,12 +122,13 @@ class ProductServiceImplTest {
         assertThat(p).isNotNull();
     }
 
-    /*@Test
+    @Test
     void deleteProduct() {
-        iProductService.deleteProduct(9L);
-        Product product = productRepository.findById(9L).orElse(null);
+        List<Product> productList = iProductService.retreiveAllProduct();
+        iProductService.deleteProduct(productList.get(productList.size()).getIdProduct());
+        Product product = productRepository.findById(productList.get(productList.size()).getIdProduct()).orElse(null);
         assertThat(product).isNull();
-    }*/
+    }
 
     @Test
     void retreiveProductStock() {
