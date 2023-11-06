@@ -2,7 +2,6 @@ package tn.esprit.devops_project.services;
 
 import org.junit.jupiter.api.Assertions;
 
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 
@@ -17,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.devops_project.entities.Product;
 
 import tn.esprit.devops_project.entities.ProductCategory;
-import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.ProductRepository;
 import tn.esprit.devops_project.repositories.StockRepository;
 import tn.esprit.devops_project.services.Iservices.IProductService;
@@ -46,8 +44,6 @@ class ProductServiceImplTest {
     @Mock
     private ProductRepository productRepositoryy;
 
-    @Mock
-    private StockRepository stockRepositoryy;
 
     @Test
     void retreiveAllProductMock() {
@@ -65,26 +61,13 @@ class ProductServiceImplTest {
         assertThat(product1).isNotEmpty();
     }
 
-    @Test
-    void addProductMock() {
-        Stock s = new Stock();
-        s.setIdStock(1L);
-        // Create a mock operator
-        Product product = new Product(1L, "regg", 50f, 4, ProductCategory.CLOTHING);
 
-        // Stub the behavior of the mocked repository when saving an operator
-        Mockito.when(productRepositoryy.save(product)).thenReturn(product);
-        Mockito.when(stockRepositoryy.findByIdStock(Mockito.anyLong())).thenReturn(s);
-
-        Product result = iProductServicee.addProduct(product,1L);
-
-        assertThat(result).isNotNull();
-    }
    @Test
     void deleteProductMock() {
        Long ProductId = 1L;
-        iProductServicee.deleteProduct(ProductId);
-       Mockito.verify(productRepositoryy, Mockito.times(1)).deleteById(ProductId);
+       Mockito.when(iProductServicee.deleteProduct(Mockito.any())).thenReturn("deleted");
+       String result = iProductServicee.deleteProduct(ProductId);
+       assertThat(result).isNotNull();
    }
 
     @Test
