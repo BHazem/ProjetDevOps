@@ -23,7 +23,7 @@ pipeline{
             }
         }
 }
-/*
+
   stage('MVN test') {
             steps{
                  dir('DevOps_Project') {
@@ -61,7 +61,7 @@ pipeline{
                 }
         }
 
-*/
+
                 stage('Build Docker Image') {
                     steps {
                         script {
@@ -91,6 +91,21 @@ pipeline{
                         }
                     }
 }
+stage('Docker Compose') {
+            steps {
+                 dir('DevOps_Project') {
+                sh 'docker compose up -d'
+                  }
+            }
+        }
+
+ stage('PS') {
+            steps {
+                dir('DevOps_Project') {
+                    sh 'docker compose ps'
+                }
+            }
+        }
 
     }
 }
