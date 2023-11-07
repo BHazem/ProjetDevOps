@@ -67,7 +67,7 @@ pipeline{
                         script {
                             dir('DevOps_Project') {
                                 // Construire l'image Docker avec un tag. Remplacez 'myapp' par le nom de votre application
-                                sh 'docker build -t DevOps_Project:latest .'
+                                sh 'docker build -t devops_project .'
                             }
                         }
                     }
