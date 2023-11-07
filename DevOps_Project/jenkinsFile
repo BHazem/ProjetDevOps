@@ -101,7 +101,7 @@ stage('Test, Jacoco Report & Static Analysis') {
                         -Dsonar.jacoco.reportPaths=DevOps_Project/target/site/jacoco/jacoco.xml \
                         -Dsonar.projectKey=DevOps_Project \
                         -Dsonar.exclusions=vendor/**,resources/**,**/*.java \
-                        -Dsonar.host.url=http://192.168.1.110:9000/"
+                        -Dsonar.host.url=http://192.168.176.160:9000/"
                 }
             }
         }
