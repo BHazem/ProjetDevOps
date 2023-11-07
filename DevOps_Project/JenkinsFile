@@ -81,7 +81,7 @@ pipeline{
                               def dockerUsername = 'maleksoufi'
                               def dockerPassword = 'docker123'
 
-                               sh "sudo chmod 666 /var/run/docker.sock."
+
                                  sh "docker login -u $dockerUsername -p $dockerPassword"
                                    dir('DevOps_Project') {
                 sh 'docker tag devops_project maleksoufi/devops_project:latest'
