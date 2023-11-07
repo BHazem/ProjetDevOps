@@ -68,7 +68,7 @@ pipeline{
                             dir('DevOps_Project') {
 
                                 // Construire l'image Docker avec un tag. Remplacez 'myapp' par le nom de votre application
-                                                sh 'sudo docker login'
+
 
                                 sh 'sudo docker build -t devops_project .'
                             }
