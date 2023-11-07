@@ -24,6 +24,8 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	final OperatorRepository operatorRepository;
 	final InvoiceDetailRepository invoiceDetailRepository;
 	final SupplierRepository supplierRepository;
+	private static final String X1 = "Invoice not found";  // Compliant
+
 	//commentaire
 	//commentaire 2 developper
 	@Override
@@ -33,7 +35,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	@Override
 	public void cancelInvoice(Long invoiceId) {
 		// method 01
-		Invoice invoice = invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException("Invoice not found"));
+		Invoice invoice = invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException(X1));
 		invoice.setArchived(true);
 		invoiceRepository.save(invoice);
 		//method 02 (Avec JPQL)
@@ -43,7 +45,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	@Override
 	public Invoice retrieveInvoice(Long invoiceId) {
 
-		return invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException("Invoice not found"));
+		return invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException(X1));
 	}
 
 	@Override
@@ -54,7 +56,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 
 	@Override
 	public void assignOperatorToInvoice(Long idOperator, Long idInvoice) {
-		Invoice invoice = invoiceRepository.findById(idInvoice).orElseThrow(() -> new NullPointerException("Invoice not found"));
+		Invoice invoice = invoiceRepository.findById(idInvoice).orElseThrow(() -> new NullPointerException(X1));
 		Operator operator = operatorRepository.findById(idOperator).orElseThrow(() -> new NullPointerException("Operator not found"));
 		operator.getInvoices().add(invoice);
 		operatorRepository.save(operator);
