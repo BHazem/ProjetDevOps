@@ -76,8 +76,12 @@ pipeline{
                     steps {
                         script {
                             // Pousser l'image vers le registre Docker. Remplacez 'myregistry' par l'URL de votre registre
+                              def dockerUsername = 'maleksoufi'
+                              def dockerPassword = 'ETOILESPORTIVEDUSAHEL1925'
+
+
                             // et 'myapp' par le nom de votre application
-                            sh 'docker push myregistry/myapp:latest'
+                            sh 'docker push myregistry/DevOps_Project:latest'
                         }
                     }
                 }

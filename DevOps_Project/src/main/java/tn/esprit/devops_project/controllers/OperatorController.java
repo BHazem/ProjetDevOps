@@ -2,6 +2,7 @@ package tn.esprit.devops_project.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.devops_project.dto.OperatorDto;
 import tn.esprit.devops_project.entities.Operator;
 import tn.esprit.devops_project.services.iservices.IOperatorService;
 
@@ -24,7 +25,7 @@ public class OperatorController {
 	}
 
 	@PostMapping("/operator")
-	public Operator addOperator(@RequestBody Operator operator) {
+	public Operator addOperator(@RequestBody OperatorDto operator) {
 		return operatorService.addOperator(operator);
 	}
 
@@ -34,7 +35,7 @@ public class OperatorController {
 	}
 
 	@PutMapping("/operator")
-	public Operator modifyOperateur(@RequestBody Operator operator) {
+	public Operator modifyOperateur(@RequestBody OperatorDto operator) {
 		return operatorService.updateOperator(operator);
 	}
 

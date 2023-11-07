@@ -1,15 +1,13 @@
 package tn.esprit.devops_project.services;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import tn.esprit.devops_project.dto.ActivitySectorDto;
 import tn.esprit.devops_project.entities.ActivitySector;
 import tn.esprit.devops_project.repositories.ActivitySectorRepository;
 
@@ -17,6 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -28,25 +28,23 @@ class ActivitySectorImplTest {
     @InjectMocks // Creates an instance of the class and injects the mocks that are created with the @Mock (or @Spy) annotations.
     private ActivitySectorImpl activitySectorService;
 
-    private AutoCloseable closeable;
-
-    // This method is called before each test execution.
 
 
-    // Each method annotated with @Test is a test case.
     @Test
     void testAddActivitySector() {
-        // Arrange: Create a mock object and define its behavior.
+        // Arrange
+        ActivitySectorDto dto = new ActivitySectorDto(1L, "CODE1", "IT");
         ActivitySector activitySector = new ActivitySector(1L, "CODE1", "IT", null);
         when(activitySectorRepository.save(any(ActivitySector.class))).thenReturn(activitySector);
 
-        // Act: Call the method under test.
-        ActivitySector result = activitySectorService.addActivitySector(activitySector);
+        // Act
+        ActivitySector result = activitySectorService.addActivitySector(dto);
 
-        // Assert: Verify the output is as expected.
-        Assertions.assertNotNull(result);
-        Assertions.assertEquals(activitySector.getIdSecteurActivite(), result.getIdSecteurActivite());
+        // Assert
+        assertNotNull(result);
+        assertEquals(activitySector.getIdSecteurActivite(), result.getIdSecteurActivite());
     }
+
 
     @Test
     void testDeleteActivitySector() {
@@ -63,19 +61,18 @@ class ActivitySectorImplTest {
     @Test
     void testUpdateActivitySector() {
         // Arrange
-        ActivitySector originalActivitySector = new ActivitySector(1L, "CODE1", "IT", null);
         ActivitySector updatedActivitySector = new ActivitySector(1L, "CODE2", "Finance", null);
-
+        ActivitySectorDto dto = new ActivitySectorDto(1L, "CODE1", "IT");
         ArgumentCaptor<ActivitySector> activitySectorCaptor = ArgumentCaptor.forClass(ActivitySector.class);
         when(activitySectorRepository.save(activitySectorCaptor.capture())).thenReturn(updatedActivitySector);
 
         // Act
-        ActivitySector result = activitySectorService.updateActivitySector(updatedActivitySector);
+        ActivitySector result = activitySectorService.updateActivitySector(dto);
 
         // Assert
         ActivitySector capturedActivitySector = activitySectorCaptor.getValue();
-        Assertions.assertNotNull(result);
-        Assertions.assertEquals("CODE2", capturedActivitySector.getCodeSecteurActivite(),
+        assertNotNull(result);
+        assertEquals("CODE2", capturedActivitySector.getCodeSecteurActivite(),
                 "The sector code should be updated to CODE2 but was " + capturedActivitySector.getCodeSecteurActivite());
     }
 
@@ -91,8 +88,8 @@ class ActivitySectorImplTest {
         ActivitySector result = activitySectorService.retrieveActivitySector(id);
 
         // Assert
-        Assertions.assertNotNull(result);
-        Assertions.assertEquals(id, result.getIdSecteurActivite());
+        assertNotNull(result);
+        assertEquals(id, result.getIdSecteurActivite());
     }
 
     @Test
@@ -109,6 +106,6 @@ class ActivitySectorImplTest {
 
         // Assert
         Assertions.assertFalse(result.isEmpty());
-        Assertions.assertEquals(2, result.size());
+        assertEquals(2, result.size());
     }
 }
