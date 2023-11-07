@@ -32,16 +32,20 @@ pipeline {
     }
 stage('Test, Jacoco Report & Static Analysis') {
                     steps {
+                        dir('DevOps_Project') {
                         sh 'mvn test jacoco:report'
                         junit 'target/surefire-reports/**/*.xml'
                     }
+}
         }
             
 
         stage('MVN SONARQUBE') {
             steps {
+                dir('DevOps_Project'){
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
             }
+}
         }
 
        stage('Deploy') {
