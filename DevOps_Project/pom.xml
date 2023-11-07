@@ -63,7 +63,7 @@
        <!-- Use the latest version -->
             <scope>test</scope>
         </dependency>
-        <dependency>
+<dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.6.9</version>
@@ -123,7 +123,7 @@
         <repository>
             <id>deploymentRepo</id>
             <name>Nexus Repository</name>
-            <url>http://192.168.1.110:8081/repository/maven-releases/</url>
+            <url>http://192.168.176.160:8081/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 </project>
