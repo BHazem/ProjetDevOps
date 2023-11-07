@@ -61,13 +61,26 @@ pipeline{
              }
          }
          }*/
-         stage('Build Docker Image') {
+ /*        stage('Build Docker Image') {
                       steps {
                        dir('DevOps_Project') {
                           sh 'docker build -t devops_project .'
                        }
               }
           }
+*/
+          stage('Build Docker Image') {
+              steps {
+                  echo 'Building Docker image for the application...'
+                  script {
+                      // Utilisation de la commande docker build pour construire l'image
+                      dir('DevOps_Project') {
+                          sh 'docker build -t devops_project .'
+                      }
+                  }
+              }
+          }
+
           stage('Push Docker Image') {
               steps {
                   script {
