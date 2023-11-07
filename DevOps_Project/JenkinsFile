@@ -52,7 +52,7 @@ pipeline{
                             sh 'mvn install'
                         }
                     }
-
+}
           stage('Nexus') {
                     steps{
                          dir('DevOps_Project') {
