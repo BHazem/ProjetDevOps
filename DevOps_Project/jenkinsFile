@@ -54,20 +54,20 @@ pipeline{
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
             }}
         }
-  stage('Deploy') {
+  /*stage('Deploy') {
              steps {
           dir('DevOps_Project') {
                  sh 'mvn deploy -DskipTests -DaltDeploymentRepository=deploymentRepo::default::http://localhost:8081/repository/maven-releases/'
              }
          }
-         }
-        /*  stage('Build Docker Image') {
+         }*/
+         stage('Build Docker Image') {
                       steps {
                        dir('DevOps_Project') {
                           sh 'docker build -t devops_project .'
                        }
               }
-          }*/
+          }
 
 }
   post {
