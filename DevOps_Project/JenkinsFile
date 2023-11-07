@@ -66,8 +66,11 @@ pipeline{
                     steps {
                         script {
                             dir('DevOps_Project') {
+
                                 // Construire l'image Docker avec un tag. Remplacez 'myapp' par le nom de votre application
-                                sh 'docker build -t devops_project .'
+                                                sh 'sudo docker login'
+
+                                sh 'sudo docker build -t devops_project .'
                             }
                         }
                     }
@@ -80,10 +83,10 @@ pipeline{
                             // Pousser l'image vers le registre Docker. Remplacez 'myregistry' par l'URL de votre registre
                               def dockerUsername = 'maleksoufi'
                               def dockerPassword = 'docker123'
-                                 sh "docker login -u $dockerUsername -p $dockerPassword"
+                                 sh "sudo docker login -u $dockerUsername -p $dockerPassword"
                                    dir('DevOps_Project') {
-                sh 'docker tag devops_project maleksoufi/devops_project:latest'
-                sh 'docker push maleksoufi/devops_project:latest'
+                sh 'sudo docker tag devops_project maleksoufi/devops_project:latest'
+                sh 'sudo docker push maleksoufi/devops_project:latest'
             }
 
                         }
