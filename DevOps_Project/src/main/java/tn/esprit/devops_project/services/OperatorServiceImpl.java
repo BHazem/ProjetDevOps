@@ -4,9 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
-import tn.esprit.devops_project.dto.ActivitySectorDto;
 import tn.esprit.devops_project.dto.OperatorDto;
-import tn.esprit.devops_project.entities.ActivitySector;
 import tn.esprit.devops_project.entities.Operator;
 import tn.esprit.devops_project.repositories.OperatorRepository;
 import tn.esprit.devops_project.services.iservices.IOperatorService;
@@ -27,7 +25,6 @@ public class OperatorServiceImpl implements IOperatorService {
 	@Override
 	public Operator addOperator(OperatorDto operatorDto) {
 		Operator   operator = convertDtoToEntity(operatorDto);
-
 		return operatorRepository.save(operator);
 	}
 
