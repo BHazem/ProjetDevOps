@@ -43,7 +43,7 @@ pipeline{
           stage('Nexus') {
                     steps{
                          dir('DevOps_Project') {
-                        sh 'mvn deploy'
+                        sh 'mvn deploy -DskipTests'
                     }
                 }
         }
