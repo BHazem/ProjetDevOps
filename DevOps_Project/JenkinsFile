@@ -23,7 +23,7 @@ pipeline{
             }
         }
 }
-
+/*
   stage('MVN test') {
             steps{
                  dir('DevOps_Project') {
@@ -61,7 +61,7 @@ pipeline{
                 }
         }
 
-        /*
+*/
                 stage('Build Docker Image') {
                     steps {
                         script {
@@ -79,15 +79,17 @@ pipeline{
                         script {
                             // Pousser l'image vers le registre Docker. Remplacez 'myregistry' par l'URL de votre registre
                               def dockerUsername = 'maleksoufi'
-                              def dockerPassword = 'ETOILESPORTIVEDUSAHEL1925'
+                              def dockerPassword = 'docker123'
+                                 sh "docker login -u $dockerUsername -p $dockerPassword"
+                                   dir('DevOps_Project') {
+                sh 'docker tag devops_project maleksoufi/devops_project:latest'
+                sh 'docker push maleksoufi/devops_project:latest'
+            }
 
-
-                            // et 'myapp' par le nom de votre application
-                            sh 'docker push myregistry/DevOps_Project:latest'
                         }
                     }
-                }
-            */
+
+
     }
 }
 
