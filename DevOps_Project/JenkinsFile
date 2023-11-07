@@ -60,6 +60,28 @@ pipeline{
                     }
                 }
         }
+                stage('Build Docker Image') {
+                    steps {
+                        script {
+                            dir('DevOps_Project') {
+                                // Construire l'image Docker avec un tag. Remplacez 'myapp' par le nom de votre application
+                                sh 'docker build -t DevOps_Project:latest .'
+                            }
+                        }
+                    }
+                }
+
+                // Ajouter une étape pour pousser l'image dans un registre Docker
+                stage('Push Docker Image') {
+                    steps {
+                        script {
+                            // Pousser l'image vers le registre Docker. Remplacez 'myregistry' par l'URL de votre registre
+                            // et 'myapp' par le nom de votre application
+                            sh 'docker push myregistry/myapp:latest'
+                        }
+                    }
+                }
+            }
     }
 }
 
