@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage("Testing Maven") {
+      /*  stage("Testing Maven") {
             steps {
                 sh "mvn -version"
             }
@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh "java -version"
             }
-        }
+        }*/
         stage("Checkout Git") {
             steps {
                 echo "Pulling"
@@ -30,20 +30,19 @@ pipeline {
             }
         }
     }
-  stage('Generate JaCoCo Coverage Report') {
-        steps {
-            dir('DevOps_Project') {
-                sh 'mvn jacoco:report'
-            }
+stage('Test, Jacoco Report & Static Analysis') {
+                    steps {
+                        sh 'mvn test jacoco:report'
+                        junit 'target/surefire-reports/**/*.xml'
+                    }
         }
-    }
-    stage('MVN SONARQUBE') {
-        steps {
-            dir('DevOps_Project') {
+            
+
+        stage('MVN SONARQUBE') {
+            steps {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
             }
         }
-    }
 
        stage('Deploy') {
             steps {
