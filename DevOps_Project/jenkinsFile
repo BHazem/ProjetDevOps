@@ -68,15 +68,28 @@ pipeline{
                        }
               }
           }
+          stage('Push Docker Image') {
+              steps {
+                  script {
+                      def dockerUsername = 'soulaima2'
+                      def dockerPassword = 'Soulaima1122'
+                      sh "docker login -u $dockerUsername -p $dockerPassword"
+                      dir('DevOps_Project') {
+                          sh 'docker tag devops_project soulaima2/devops_project:latest'
+                          sh 'docker push soulaima2/devops_project:latest'
+                      }
+                  }
+              }
+          }
 
 }
   post {
         always {
             script {
                 def scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-//                def nodejsHome = tool name: 'nodejs' , type: 'hudson.plugins.nodejs.tools.NodeJSInstallation'
+
                 withSonarQubeEnv('sonarqube') {
-                 //   sh "${nodejsHome}/bin/node --version/"
+
                     sh "${scannerHome}/bin/sonar-scanner \
                         -Dsonar.login=admin \
                         -Dsonar.password=sonar \

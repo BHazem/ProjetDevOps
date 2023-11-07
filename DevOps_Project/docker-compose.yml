@@ -1,19 +1,9 @@
 version: "3.8"
 services:
-  mysqldb:
-    image: "mysql:5.7"
-    restart: unless-stopped
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes
-      MYSQL_DATABASE: devops
-    ports:
-      - 3306:3306
-    volumes:
-      - db:/var/lib/mysql
-
 
   Devops_Project:
-    image: soulaima/devops_project
+    container_name: springboot-container
+    image: devops_project
     restart: on-failure
     environment:
       SPRING_APPLICATION_JSON: '{
@@ -26,6 +16,18 @@ services:
       - mysqldb
     volumes:
       - app_data:/app/data
+
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_DATABASE: devops
+    ports:
+      - 3307:3307
+    volumes:
+      - db:/var/lib/mysql
 
 volumes:
   db:
