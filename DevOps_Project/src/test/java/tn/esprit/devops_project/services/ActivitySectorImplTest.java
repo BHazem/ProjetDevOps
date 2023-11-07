@@ -57,14 +57,23 @@ class ActivitySectorImplTest {
         // Assert: Verify the method was called.
         verify(activitySectorRepository, times(1)).deleteById(1L);
     }
-
+    private ActivitySector convertDtoToEntity(ActivitySectorDto dto) {
+        // create an instance of ActivitySector and set its fields using the values from the dto
+        ActivitySector entity = new ActivitySector();
+        entity.setCodeSecteurActivite(dto.getCodeSecteurActivite());
+        entity.setLibelleSecteurActivite(dto.getLibelleSecteurActivite());
+        // ... set other fields ...
+        return entity;
+    }
     @Test
     void testUpdateActivitySector() {
         // Arrange
-        ActivitySector updatedActivitySector = new ActivitySector(1L, "CODE2", "Finance", null);
-        ActivitySectorDto dto = new ActivitySectorDto(1L, "CODE1", "IT");
+        ActivitySectorDto dto = new ActivitySectorDto(1L, "CODE2", "IT");
+        ActivitySector activitySector = convertDtoToEntity(dto);
+
+
         ArgumentCaptor<ActivitySector> activitySectorCaptor = ArgumentCaptor.forClass(ActivitySector.class);
-        when(activitySectorRepository.save(activitySectorCaptor.capture())).thenReturn(updatedActivitySector);
+        when(activitySectorRepository.save(activitySectorCaptor.capture())).thenReturn(activitySector);
 
         // Act
         ActivitySector result = activitySectorService.updateActivitySector(dto);
