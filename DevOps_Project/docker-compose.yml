@@ -17,7 +17,7 @@ services:
     volumes:
       - app_data:/app/data
 
-  mysqldb:
+  mysqldb1:
     container_name: mysqldb1
     image: mysql:5.7
     restart: unless-stopped
