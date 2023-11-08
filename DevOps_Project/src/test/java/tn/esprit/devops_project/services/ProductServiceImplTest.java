@@ -100,7 +100,7 @@ class ProductServiceImplTest {
 
     @Test
     void retrieveProduct() {
-    Product product1 = iProductService.retrieveProduct(1L);
+    Product product1 = iProductService.retrieveProduct(5L);
     assertThat(product1).isNotNull();
     }
 
