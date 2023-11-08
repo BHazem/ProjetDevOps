@@ -76,22 +76,9 @@ stage('Test, Jacoco Report & Static Analysis') {
                 }
             }
         }
-/*
-        stage('Docker Compose') {
-                    steps {
-                         dir('DevOps_Project') {
-                        sh 'docker compose up -d'
-                          }
-                    }
-                } */
 
-         stage('PS') {
-                    steps {
-                        dir('DevOps_Project') {
-                            sh 'docker compose ps'
-                        }
-                    }
-                }
+
+   
 
         }
 
