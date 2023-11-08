@@ -81,7 +81,7 @@ stage('Test, Jacoco Report & Static Analysis') {
    
 
         }
-
+/*
    post {
         always {
             script {
@@ -98,5 +98,5 @@ stage('Test, Jacoco Report & Static Analysis') {
             }
         }
     }
-  
+  */
 }
