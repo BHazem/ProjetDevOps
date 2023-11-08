@@ -22,8 +22,8 @@ public class StockServiceImpl implements IStockService {
 
     @Override
     public Stock retrieveStock(Long id) {
-        return stockRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Stock with ID " + id + " not found"));    }
-
+        return stockRepository.findStockByIdStock(id);
+    }
     @Override
     public List<Stock> retrieveAllStock() {
         return stockRepository.findAll();

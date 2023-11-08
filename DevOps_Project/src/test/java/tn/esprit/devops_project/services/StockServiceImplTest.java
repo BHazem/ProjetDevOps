@@ -50,6 +50,15 @@ class StockServiceImplTest {
         Assertions.assertNotNull(list);
     }
 
+    @Test
+    void testretrievestochMock(){
+        Stock stock = new Stock(2L,"qqq");
+        Mockito.when(stockService.retrieveStock(Mockito.any())).thenReturn(stock);
+        Stock stock1 =stockService.retrieveStock(2L);
+        assertThat(stock1.getIdStock()).isEqualTo(2L);
+        assertThat(stock1).isNotNull();
+    }
+
 
  /*   @Test
     void testRetrieveStock() {
