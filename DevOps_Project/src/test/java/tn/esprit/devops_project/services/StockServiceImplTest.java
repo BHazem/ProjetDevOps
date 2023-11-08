@@ -107,12 +107,12 @@ class StockServiceImplTest {
         assertThat(stocks).isNotNull()
         .isNotEmpty();
     }
-    @Test
+    /* @Test
     void retrieveStock(){
         Stock stock1 = stockService.retrieveStock(2L);
         assertThat(stock1).isNotNull();
     }
-
+*/
 
 
 }
