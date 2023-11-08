@@ -13,6 +13,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Supplier implements Serializable {
 
@@ -31,8 +32,8 @@ public class Supplier implements Serializable {
 	@ManyToMany
 	private Set<ActivitySector> activitySectors;
 
-	public Supplier(long l, String s, String s1, SupplierCategory conventionne) {
-	}
+//	public Supplier(long l, String s, String s1, SupplierCategory conventionne) {
+//	}
 
 	/*public Supplier(Long idSupplier, String code, String label) {
 		this.idSupplier = idSupplier;
