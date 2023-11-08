@@ -87,7 +87,7 @@ pipeline{
                       def dockerPassword = 'Soulaima1122'
                       sh "docker login -u $dockerUsername -p $dockerPassword"
                       dir('DevOps_Project') {
-                          sh 'docker tag devops_project soulaima2/devops_project:latest'
+                          sh 'docker tag soulaima2/devops_project soulaima2/devops_project:latest'
                           sh 'docker push soulaima2/devops_project:latest'
                       }
                   }
