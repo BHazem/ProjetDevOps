@@ -110,7 +110,15 @@ pipeline{
                       }
                   }
 
+        stage('Grafana/Prometheus'){
+        steps{
+             dir('DevOps_Project') {
+             sh 'docker start c993ac778fd5'
+             sh 'docker start a1e464ce42ea'
 
+             }
+        }
+        }
 
 }
   post {
