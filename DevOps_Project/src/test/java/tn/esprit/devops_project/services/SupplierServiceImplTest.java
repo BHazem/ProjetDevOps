@@ -1,100 +1,83 @@
 package tn.esprit.devops_project.services;
 
-import org.junit.jupiter.api.Assertions;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+import tn.esprit.devops_project.dto.SupplierDto;
 import tn.esprit.devops_project.entities.Supplier;
-import tn.esprit.devops_project.entities.SupplierCategory;
 import tn.esprit.devops_project.repositories.SupplierRepository;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+@ExtendWith(MockitoExtension.class)
 @SpringBootTest
-class SupplierServiceImplTest {
+public class SupplierServiceImplTest {
 
-    List<Supplier> supplierList = new ArrayList<Supplier>() {
-        {
-            add( Supplier.builder().label("Label").code("Code").supplierCategory(SupplierCategory.ORDINAIRE).build());
-            add( Supplier.builder().label("Label").code("Code").supplierCategory(SupplierCategory.ORDINAIRE).build());
-        }
-    };
-
-    @InjectMocks
-    private SupplierServiceImpl supplierService;
     @Mock
     private SupplierRepository supplierRepository;
 
+    @InjectMocks
+    private SupplierServiceImpl supplierService;
+
+    // Test for retrieveAllSuppliers method
     @Test
-    void retrieveAllSuppliers() {
-        Mockito.when(supplierService.retrieveAllSuppliers()).thenReturn(supplierList);
-        List<Supplier> list = supplierService.retrieveAllSuppliers();
-        Assertions.assertNotNull(list);
+    void retrieveAllSuppliers_ShouldReturnSupplierList() {
+        when(supplierRepository.findAll()).thenReturn(Collections.singletonList(new Supplier()));
+        List<Supplier> result = supplierService.retrieveAllSuppliers();
+        assertFalse(result.isEmpty());
+        verify(supplierRepository).findAll();
     }
 
-    /* @Test
-    void addSupplier() {
-        Supplier newSupplier = new Supplier().builder()
-                .code("New Supplier")
-                .label("New Code")
-                .supplierCategory(SupplierCategory.ORDINAIRE)
-                .build();
-
-        Mockito.when(supplierRepository.save(Mockito.any(Supplier.class))).thenReturn(newSupplier);
-
-        Supplier s = supplierService.addSupplier(newSupplier);
-
-        assertThat(s).isNotNull();
-
-        supplierService.deleteSupplier(newSupplier.getIdSupplier());
-
-    }
-*/
+    // Test for addSupplier method
     @Test
-    void deleteSupplier() {
-        // Créez un fournisseur existant pour le supprimer
-        Supplier existingSupplier = Supplier.builder().label("Label").code("Code").supplierCategory(SupplierCategory.ORDINAIRE).build();
-
-
-        // Mockito pour simuler le comportement du repository lors de la suppression
-        Mockito.doNothing().when(supplierRepository).deleteById(1L);
-
-        // Appel de la méthode de suppression
-        supplierService.deleteSupplier(1L);
-
-        // Vérification que le fournisseur a été supprimé
-        Supplier deletedSupplier = supplierRepository.findById(1L).orElse(null);
-        assertThat(deletedSupplier).isNull();
+    void addSupplier_ShouldReturnNewSupplier() {
+        SupplierDto supplierDto = new SupplierDto();
+        Supplier supplier = new Supplier();
+        when(supplierRepository.save(any(Supplier.class))).thenReturn(supplier);
+        Supplier result = supplierService.addSupplier(supplierDto);
+        assertNotNull(result);
+        verify(supplierRepository).save(any(Supplier.class));
     }
 
-    /*@Test
-    void retrieveSupplier() {
-        // Créez un fournisseur existant
-        Supplier existingSupplier = Supplier.builder().label("Label").code("Code").supplierCategory(SupplierCategory.ORDINAIRE).build();
-
-        supplierService.addSupplier(existingSupplier);
-        // Mockito pour simuler le comportement du repository lors de la recherche par ID
-        Mockito.when(supplierRepository.findById(existingSupplier.getIdSupplier())).thenReturn(Optional.of(existingSupplier));
-
-        // Appel de la méthode de recherche par ID
-        Supplier retrievedSupplier = supplierService.retrieveSupplier(existingSupplier.getIdSupplier());
-
-        // Vérification des résultats
-        assertThat(retrievedSupplier).isNotNull();
-        assertThat(retrievedSupplier.getCode()).isEqualTo("Code");
-        assertThat(retrievedSupplier.getLabel()).isEqualTo("Label");
-        assertThat(retrievedSupplier.getSupplierCategory()).isEqualTo(SupplierCategory.ORDINAIRE);
+    // Test for updateSupplier method
+    @Test
+    void updateSupplier_ShouldReturnUpdatedSupplier() {
+        SupplierDto supplierDto = new SupplierDto();
+        Supplier supplier = new Supplier();
+        when(supplierRepository.save(any(Supplier.class))).thenReturn(supplier);
+        Supplier result = supplierService.updateSupplier(supplierDto);
+        assertNotNull(result);
+        verify(supplierRepository).save(any(Supplier.class));
     }
-    */
 
+    // Test for deleteSupplier method
+    @Test
+    void deleteSupplier_ShouldInvokeRepositoryDelete() {
+        Long supplierId = 1L;
+        doNothing().when(supplierRepository).deleteById(anyLong());
+        supplierService.deleteSupplier(supplierId);
+        verify(supplierRepository).deleteById(supplierId);
+    }
+
+    // Test for retrieveSupplier method
+    @Test
+    void retrieveSupplier_ShouldReturnSupplier() {
+        Long supplierId = 1L;
+        Supplier supplier = new Supplier();
+        when(supplierRepository.findById(supplierId)).thenReturn(Optional.of(supplier));
+        Supplier result = supplierService.retrieveSupplier(supplierId);
+        assertNotNull(result);
+        verify(supplierRepository).findById(supplierId);
+    }
+
+    // Additional test cases to handle exceptions, etc...
 }

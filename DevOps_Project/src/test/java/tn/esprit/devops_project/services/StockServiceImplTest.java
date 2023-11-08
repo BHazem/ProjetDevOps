@@ -18,6 +18,7 @@ import tn.esprit.devops_project.entities.ActivitySector;
 import tn.esprit.devops_project.entities.Stock;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
@@ -36,7 +38,56 @@ import static org.mockito.Mockito.when;
 
 class StockServiceImplTest {
 
+    @Mock
+    private StockRepository stockRepository;
+
     @InjectMocks
+    private StockServiceImpl stockService;
+
+    @Test
+    void addStock_ShouldReturnNewStock() {
+        // Arrange
+        StockDto stockDto = new StockDto(); // Assume StockDto is properly set up
+        Stock stock = new Stock(); // Assume Stock is properly set up
+        when(stockRepository.save(any(Stock.class))).thenReturn(stock);
+
+        // Act
+        Stock result = stockService.addStock(stockDto);
+
+        // Assert
+        assertNotNull(result);
+        verify(stockRepository).save(any(Stock.class));
+    }
+
+    @Test
+    void retrieveStock_ShouldReturnStock() {
+        // Arrange
+        Long id = 1L;
+        Stock stock = new Stock(); // Assume Stock is properly set up
+        when(stockRepository.findByIdStock(id)).thenReturn(stock);
+
+        // Act
+        Stock result = stockService.retrieveStock(id);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(stock, result);
+        verify(stockRepository).findByIdStock(id);
+    }
+
+    @Test
+    void retrieveAllStock_ShouldReturnStockList() {
+        // Arrange
+        when(stockRepository.findAll()).thenReturn(Collections.singletonList(new Stock()));
+
+        // Act
+        List<Stock> result = stockService.retrieveAllStock();
+
+        // Assert
+        assertFalse(result.isEmpty());
+        verify(stockRepository).findAll();
+    }
+   /* @InjectMocks
     private StockServiceImpl stockService;
 
     @Mock
@@ -89,7 +140,7 @@ class StockServiceImplTest {
         assertThat(savedStock.getIdStock()).isEqualTo(4L);
         assertThat(savedStock.getTitle()).isEqualTo("test4");
     }
-*/
+
 
 
 
