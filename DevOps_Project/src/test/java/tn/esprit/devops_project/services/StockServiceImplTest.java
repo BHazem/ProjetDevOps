@@ -11,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.stereotype.Service;
 import tn.esprit.devops_project.entities.Stock;
 
 import java.util.ArrayList;
@@ -24,8 +25,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
+
 class StockServiceImplTest {
 
     @InjectMocks
@@ -109,7 +112,7 @@ Stock stock1=new Stock(2L,"aaa");
 
 
 
-/*
+
 
     @Autowired
     StockServiceImpl iStockService;
@@ -120,12 +123,12 @@ Stock stock1=new Stock(2L,"aaa");
         assertThat(stocks).isNotNull();
         assertThat(stocks).isNotEmpty();
     }
-    @Test
+  /*  @Test
     void retrieveStock(){
         Stock stock1 = stockService.retrieveStock(1L);
         assertThat(stock1).isNotNull();
-    }*/
+    }
 
-
+*/
 
 }
