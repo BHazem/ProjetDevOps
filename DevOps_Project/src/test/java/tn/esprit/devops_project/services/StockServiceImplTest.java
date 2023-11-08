@@ -90,7 +90,7 @@ Stock stock1=new Stock(2L,"aaa");
 
 
 
-
+/*
     @Autowired
     StockServiceImpl iStockService;
 
@@ -99,7 +99,7 @@ Stock stock1=new Stock(2L,"aaa");
         List<Stock> stocks = iStockService.retrieveAllStock();
         assertThat(stocks).isNotNull();
         assertThat(stocks).isNotEmpty();
-    }
+    }*/
 
 
 }

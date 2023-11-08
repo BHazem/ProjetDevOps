@@ -31,6 +31,20 @@ pipeline{
             }
         }
 }
+  stage('Unit Tests / Mockito') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn test'
+            }
+        }
+    }
+    stage('JaCoCo Coverage Report') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn jacoco:report'
+            }
+        }
+    }
 
 
 
@@ -96,20 +110,7 @@ pipeline{
                       }
                   }
 
-    stage('Unit Tests / Mockito') {
-        steps {
-            dir('DevOps_Project') {
-                sh 'mvn test'
-            }
-        }
-    }
-    stage('JaCoCo Coverage Report') {
-        steps {
-            dir('DevOps_Project') {
-                sh 'mvn jacoco:report'
-            }
-        }
-    }
+
         stage('Grafana/Prometheus'){
         steps{
              dir('DevOps_Project') {
