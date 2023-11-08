@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class StockServiceImpl implements IStockService {
 
-   private final StockRepository stockRepository;
+   private  StockRepository stockRepository;
     private Stock convertDtoToEntity(StockDto dto) {
         // create an instance of ActivitySector and set its fields using the values from the dto
         Stock entity = new Stock();
@@ -31,7 +31,7 @@ public class StockServiceImpl implements IStockService {
 
     @Override
     public Stock retrieveStock(Long id) {
-        return stockRepository.findById(id).orElseThrow(() -> new NullPointerException("Stock not found"));
+        return stockRepository.findByIdStock(id);
     }
 
     @Override

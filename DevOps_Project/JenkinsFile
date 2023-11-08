@@ -62,7 +62,7 @@ pipeline{
         }
 
 
-                stage('Build Docker Image') {
+             /*  stage('Build Docker Image') {
                     steps {
                         script {
                             dir('DevOps_Project') {
@@ -72,7 +72,7 @@ pipeline{
                         }
                     }
                 }
-
+*/
                 // Ajouter une étape pour pousser l'image dans un registre Docker
                 stage('Push Docker Image') {
                     steps {
