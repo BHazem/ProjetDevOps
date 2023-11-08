@@ -3,7 +3,7 @@ services:
 
   Devops_Project:
     container_name: springboot-container
-    image: devops_project
+    image: soulaima2/devops_project
     restart: on-failure
     environment:
       SPRING_APPLICATION_JSON: '{

@@ -93,6 +93,13 @@ pipeline{
                   }
               }
           }
+          stage('Docker Compose') {
+                      steps {
+                           dir('DevOps_Project') {
+                          sh 'docker compose up -d'
+                            }
+                      }
+                  }
 
 }
   post {
