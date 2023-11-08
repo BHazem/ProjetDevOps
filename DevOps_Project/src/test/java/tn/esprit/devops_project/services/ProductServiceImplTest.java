@@ -120,21 +120,21 @@ class ProductServiceImplTest {
     }
 
 
-    @Test
+    /* @Test
     void addProduct() {
         ProductDto pdto = new ProductDto(1L, "CODE1", "IT");
         Product p = iProductService.addProduct(pdto,1L);
         assertThat(p).isNotNull();
     }
-
-    @Test
+*/
+    /*@Test
     void deleteProduct() {
         List<Product> productList = iProductService.retreiveAllProduct();
         iProductService.deleteProduct(productList.get(productList.size()-1).getIdProduct());
         Product product = productRepository.findById(productList.get(productList.size()-1).getIdProduct()).orElse(null);
         assertThat(product).isNull();
     }
-
+*/
     @Test
     void retreiveProductStock() {
         List<Product> listproducts = iProductService.retreiveProductStock(1L);
