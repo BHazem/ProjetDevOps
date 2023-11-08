@@ -60,8 +60,8 @@ class StockServiceImplTest {
         Stock stock = new Stock(2L,"qqq");
         Mockito.when(stockService.retrieveStock(Mockito.any())).thenReturn(stock);
         Stock stock1 =stockService.retrieveStock(2L);
-        assertThat(stock1.getIdStock()).isEqualTo(2L);
-        assertThat(stock1).isNotNull();
+        assertThat(stock1.getIdStock()).isEqualTo(2L)
+       .isNotNull();
     }
     @Test
     void testAddStockMoch(){
@@ -74,39 +74,6 @@ class StockServiceImplTest {
     }
 
 
- /*   @Test
-    void testRetrieveStock() {
-        Long stockId = 1L; // ID de stock à récupérer
-
-        // Configurez le comportement du mock pour la méthode du dépôt
-        Mockito.when(stockRepository.findById(stockId)).thenReturn(Optional.of(stock));
-
-        Stock result = stockService.retrieveStock(stockId);
-
-        // Vérifiez que la méthode du service appelle la méthode du dépôt
-        Mockito.verify(stockRepository).findById(stockId);
-
-        // Vérifiez que le résultat de la méthode du service est le même que le mock de la méthode du dépôt
-        assertEquals(stock, result);
-    }
-
-Stock stock1=new Stock(2L,"aaa");
-        Mockito.when(stockService.retrieveStock(Mockito.any())).thenReturn(stock1);
-        Stock stock2 =stockService.retrieveStock(2L);
-        assertThat(stock2.getIdStock()).isEqualTo(2L);
-        assertThat(stock2).isNotNull();
-
-        Mockito.when(stockRepository.findById(2L))
-                .thenReturn(Optional.of(stock));
-        Stock stock1 =stockService.retrieveStock(2L);
-        Assertions.assertNotNull(stock1);
-        Assertions.assertEquals(stock, stock1);
-
-        Mockito.when(stockRepository.findById(4L)).thenReturn(Optional.empty());
-
-        Stock stock2 = stockService.retrieveStock(4L);
-
-        Assertions.assertNull(stock2);*/
 
 
 
