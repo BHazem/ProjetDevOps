@@ -90,15 +90,16 @@ Stock stock1=new Stock(2L,"aaa");
 
 
 
-/*
+
     @Autowired
     StockServiceImpl iStockService;
 
     @Test
     public void testretrieveAllStock(){
         List<Stock> stocks = iStockService.retrieveAllStock();
-        Assertions.assertEquals(0, stocks.size());
-    }*/
+        assertThat(stocks).isNotNull();
+        assertThat(stocks).isNotEmpty();
+    }
 
 
 }
