@@ -13,12 +13,12 @@ services:
     ports:
       - 8082:8082
     depends_on:
-      - mysqldb1
+      - mysqldb
     volumes:
       - app_data:/app/data
 
-  mysqldb1:
-    container_name: mysqldb1
+  mysqldb:
+    container_name: mysqldb
     image: mysql:5.7
     restart: unless-stopped
     environment:
