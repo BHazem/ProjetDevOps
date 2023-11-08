@@ -12,6 +12,7 @@ import javax.persistence.Enumerated;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class SupplierDto { private Long idSupplier;
   private  String code;
   private String label;

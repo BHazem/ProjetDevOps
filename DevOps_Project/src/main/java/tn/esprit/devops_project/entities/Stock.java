@@ -20,4 +20,20 @@ public class Stock implements Serializable {
     String title;
     @OneToMany(mappedBy = "stock")
      private Set<Product> products;
+
+
+
+    public Stock(long idStock, String title) {
+        super();
+        this.idStock = idStock;
+        this.title = title;
+    }
+
+    public long getIdStock() {
+        return idStock;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 }

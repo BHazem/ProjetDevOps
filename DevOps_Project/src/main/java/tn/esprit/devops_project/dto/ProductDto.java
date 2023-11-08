@@ -12,6 +12,7 @@ import javax.persistence.Enumerated;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class ProductDto {
 
    private Long idProduct;
@@ -21,4 +22,6 @@ public class ProductDto {
    @Enumerated(EnumType.STRING)
   private ProductCategory category;
 
+    public ProductDto(long l, String code1, String it) {
+    }
 }
