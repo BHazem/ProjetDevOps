@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@SpringBootTest
+
 @ExtendWith(MockitoExtension.class)
 
 class StockServiceImplTest {
@@ -80,7 +80,7 @@ class StockServiceImplTest {
 
 
 
-/*
+
     @Autowired
     StockServiceImpl iStockService;
 
@@ -96,6 +96,6 @@ class StockServiceImplTest {
         assertThat(stock1).isNotNull();
     }
 
-*/
+
 
 }
