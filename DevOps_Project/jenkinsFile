@@ -16,13 +16,13 @@ pipeline {
                 echo "Pulling"
             }
         }
-      /*  stage('MVN COMPILE') {
+        stage('MVN COMPILE') {
             steps {
                 dir('DevOps_Project') {
                     sh 'mvn compile'
                 }
             }
-        }
+        }/*
     stage('Unit Tests / Mockito') {
         steps {
             dir('DevOps_Project') {
