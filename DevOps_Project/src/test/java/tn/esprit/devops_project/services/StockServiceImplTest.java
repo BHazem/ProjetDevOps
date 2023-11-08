@@ -113,7 +113,7 @@ Stock stock1=new Stock(2L,"aaa");
 
 
 
-
+/*
     @Autowired
     StockServiceImpl iStockService;
 
@@ -123,7 +123,7 @@ Stock stock1=new Stock(2L,"aaa");
         assertThat(stocks).isNotNull();
         assertThat(stocks).isNotEmpty();
     }
-  /*  @Test
+    @Test
     void retrieveStock(){
         Stock stock1 = stockService.retrieveStock(1L);
         assertThat(stock1).isNotNull();
