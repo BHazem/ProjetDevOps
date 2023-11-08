@@ -44,11 +44,12 @@ class StockServiceImplTest {
         }
     };
     @Test
-     void  testretrieveAllStock() {
+     void  testretrieveAllStockMock() {
         Mockito.when(stockService.retrieveAllStock()).thenReturn(stockList);
         List<Stock> list = stockService.retrieveAllStock();
         Assertions.assertNotNull(list);
     }
+
 
  /*   @Test
     void testRetrieveStock() {
@@ -89,7 +90,7 @@ Stock stock1=new Stock(2L,"aaa");
 
 
 
-/*
+
     @Autowired
     StockServiceImpl iStockService;
 
@@ -97,7 +98,7 @@ Stock stock1=new Stock(2L,"aaa");
     public void testretrieveAllStock(){
         List<Stock> stocks = iStockService.retrieveAllStock();
         Assertions.assertEquals(0, stocks.size());
-    }*/
+    }
 
 
 }

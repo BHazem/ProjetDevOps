@@ -96,6 +96,7 @@ pipeline{
           stage('Docker Compose') {
                       steps {
                            dir('DevOps_Project') {
+                           //pour lancer les conteneurs Docker
                           sh 'docker compose up -d'
                             }
                       }
@@ -103,12 +104,13 @@ pipeline{
            stage('PS') {
                       steps {
                           dir('DevOps_Project') {
+                          //lister tous les conteneurs gérés par Docker Compose
                               sh 'docker compose ps'
                           }
                       }
                   }
 
-             
+
 
 }
   post {
