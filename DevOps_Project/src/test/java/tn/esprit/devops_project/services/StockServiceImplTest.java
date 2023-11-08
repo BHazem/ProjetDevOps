@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Optional;
 
 import tn.esprit.devops_project.repositories.StockRepository;
+
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -57,6 +59,15 @@ class StockServiceImplTest {
         Stock stock1 =stockService.retrieveStock(2L);
         assertThat(stock1.getIdStock()).isEqualTo(2L);
         assertThat(stock1).isNotNull();
+    }
+    @Test
+    void testAddStockMoch(){
+        Stock stock2 =new Stock(4L,"test4");
+        Mockito.when(stockService.addStock(Mockito.any())).thenReturn(stock2);
+        Stock savedStock = stockService.addStock(stock2);
+        assertThat(savedStock).isNotNull();
+        assertThat(savedStock.getIdStock()).isEqualTo(4L);
+        assertThat(savedStock.getTitle()).isEqualTo("test4");
     }
 
 
