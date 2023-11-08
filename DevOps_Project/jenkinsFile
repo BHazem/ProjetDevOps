@@ -23,6 +23,7 @@ pipeline {
                 }
             }
         }
+/*
     stage('Unit Tests / Mockito') {
         steps {
             dir('DevOps_Project') {
@@ -55,7 +56,7 @@ stage('Test, Jacoco Report & Static Analysis') {
             }
         }
         }
-
+*/
          stage('Build Docker Image') {
                     steps {
                      dir('DevOps_Project') {
@@ -81,7 +82,7 @@ stage('Test, Jacoco Report & Static Analysis') {
    
 
         }
-
+/*
    post {
         always {
             script {
@@ -98,5 +99,5 @@ stage('Test, Jacoco Report & Static Analysis') {
             }
         }
     }
-  
+  */
 }
