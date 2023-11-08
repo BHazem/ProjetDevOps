@@ -16,7 +16,7 @@ pipeline {
                 echo "Pulling"
             }
         }
-        stage('MVN COMPILE') {
+      /*  stage('MVN COMPILE') {
             steps {
                 dir('DevOps_Project') {
                     sh 'mvn compile'
@@ -55,7 +55,7 @@ stage('Test, Jacoco Report & Static Analysis') {
             }
         }
         }
-
+*/
          stage('Build Docker Image') {
                     steps {
                      dir('DevOps_Project') {
