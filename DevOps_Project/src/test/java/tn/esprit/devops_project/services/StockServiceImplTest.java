@@ -95,7 +95,7 @@ Stock stock1=new Stock(2L,"aaa");
     StockServiceImpl iStockService;
 
     @Test
-    public void testretrieveAllStock(){
+    void testretrieveAllStock(){
         List<Stock> stocks = iStockService.retrieveAllStock();
         assertThat(stocks).isNotNull();
         assertThat(stocks).isNotEmpty();
