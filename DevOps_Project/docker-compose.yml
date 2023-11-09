@@ -26,6 +26,20 @@ services:
       - 3306:3306
     volumes:
       - db:/var/lib/mysql
+  
+  front-app:
+    image: bayoudhhazem/devopsproject:frontApp
+    container_name: angular-front-project
+    ports:
+      - "80:80"
+    depends_on:
+      - DevOps_Project
+   # networks:
+     # - my-network
+    volumes:
+      - ./frontend-data:/app/dist
+    restart: always    
+
 volumes:
   app_data:
   db:
