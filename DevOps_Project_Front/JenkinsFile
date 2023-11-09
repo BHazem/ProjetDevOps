@@ -1,10 +1,50 @@
-pipeline{
+pipeline {
+
     agent any
+     tools {
+        nodejs 'node'
+    }
     stages {
-        stage("Chekout Git"){
+    stage ('GIT') {
             steps {
-                echo "Pulling"
+               echo "Getting Project from Git";
+                git branch: "malek",
+                credentialsId: 'access',
+                    url: "https://github.com/BHazem/ProjetDevOps.git";
             }
         }
+
+     stage('Build') {
+    steps {
+        dir('DevOps_Project_Front') {
+                        // Build the Angular frontend
+                        sh 'npm install'
+                        sh 'npm run build'
+                    }
     }
+}
+ stage('Docker Image Build - Frontend') {
+            steps {
+                script {
+                     dir('DevOps_Project_Front') {
+                    sh "docker build -t maleksoufi/devops_project:frontApp ."
+                }
+
+                }
+            }
+        }
+         stage('Push Docker Image') {
+        steps {
+            script {
+                def dockerUsername = 'maleksoufi'
+                def dockerPassword = 'docker123'
+                sh "docker login -u $dockerUsername -p $dockerPassword"
+                dir('DevOps_Project_Front') {
+                    sh 'docker push maleksoufi/devops_project:frontApp'
+                }
+            }
+        }
+}
+
+}
 }
