@@ -33,7 +33,6 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-@DataJpaTest
 class ProductServiceImplTest {
 
     List<Product> productList = new ArrayList<Product>() {
