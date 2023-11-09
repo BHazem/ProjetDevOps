@@ -1,4 +1,5 @@
-version: "3"
+version: '3'
+
 services:
   DevOps_Project:
     container_name: DevOps_Project
@@ -6,15 +7,13 @@ services:
     restart: on-failure
     environment:
       SPRING_APPLICATION_JSON: '{
-      "spring.datasource.url" : "jdbc:mysql://mysqldb:3306/devops?createDatabaseIfNotExist=true",
-      "spring.datasource.username" : "root"
+        "spring.datasource.url" : "jdbc:mysql://mysqldb:3306/devops?createDatabaseIfNotExist=true",
+        "spring.datasource.username" : "root"
       }'
     ports:
       - 8082:8082
     depends_on:
       - mysqldb
-    volumes:
-      - app_data:/app/data
 
   mysqldb:
     container_name: mysqldb
@@ -26,6 +25,30 @@ services:
       - 3306:3306
     volumes:
       - db:/var/lib/mysql
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - DevOps_Project
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    volumes:
+      - grafana_data:/var/lib/grafana
+
 volumes:
   app_data:
   db:
+  grafana_data:
+  prometheus_data:
+
