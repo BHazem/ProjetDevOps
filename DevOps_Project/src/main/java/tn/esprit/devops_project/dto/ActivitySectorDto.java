@@ -15,5 +15,5 @@ public class ActivitySectorDto {
 
     private Long idSecteurActivite;
     private String codeSecteurActivite;
-    private   String libelleSecteurActivite;
+    private String libelleSecteurActivite;
 }

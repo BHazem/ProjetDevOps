@@ -10,18 +10,15 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-
 public class InvoiceDto {
-
-
-        Long idInvoice;
-        float amountDiscount;
-        float amountInvoice;
+        private Long idInvoice;
+        private float amountDiscount;
+        private float amountInvoice;
         @Temporal(TemporalType.DATE)
-        Date dateCreationInvoice;
+        private Date dateCreationInvoice;
         @Temporal(TemporalType.DATE)
-        Date dateLastModificationInvoice;
-        Boolean archived;
+        private Date dateLastModificationInvoice;
+        private Boolean archived;
 
 
 

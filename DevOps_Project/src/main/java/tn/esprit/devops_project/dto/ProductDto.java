@@ -14,14 +14,12 @@ import javax.persistence.Enumerated;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 public class ProductDto {
-
    private Long idProduct;
    private String title;
    private float price;
    private int quantity;
    @Enumerated(EnumType.STRING)
-  private ProductCategory category;
+   private ProductCategory category;
 
-    public ProductDto(long l, String code1, String it) {
-    }
+
 }

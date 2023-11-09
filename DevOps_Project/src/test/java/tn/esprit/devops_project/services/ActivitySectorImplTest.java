@@ -23,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-@DataJpaTest
 @ExtendWith(MockitoExtension.class)
 class ActivitySectorImplTest {
 
