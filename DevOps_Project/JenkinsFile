@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages {
-        stage("Testing version  Maven"){
+      /*  stage("Testing version  Maven"){
             steps {
                 sh "mvn -version"
             }
@@ -11,6 +11,7 @@ pipeline{
                 sh "java -version"
             }
         }
+        */
         stage("Chekout Git"){
             steps {
                 echo "Pulling"
@@ -31,14 +32,14 @@ pipeline{
             }
         }
 }
-  stage('Generate JaCoCo Coverage Report') {
+  /* stage('Generate JaCoCo Coverage Report') {
         steps {
             dir('DevOps_Project') {
                 sh 'mvn jacoco:report'
             }
         }
     }
-
+*/
 
      stage('MVN SONARQUBE') {
             steps{
@@ -91,15 +92,15 @@ pipeline{
                         }
                     }
 }
-stage('Docker Compose') {
-            steps {
-                 dir('DevOps_Project') {
-                sh 'docker compose up -d'
-                  }
-            }
-        }
+        stage('Docker Compose') {
+                    steps {
+                         dir('DevOps_Project') {
+                        sh 'docker compose up -d'
+                          }
+                    }
+                }
 
- stage('PS') {
+ stage('Docker Report') {
             steps {
                 dir('DevOps_Project') {
                     sh 'docker compose ps'
