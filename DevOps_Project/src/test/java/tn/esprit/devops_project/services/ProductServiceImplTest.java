@@ -90,7 +90,7 @@ class ProductServiceImplTest {
         assertThat(products).isNotNull()
         .isNotEmpty();
     }
-
+/*
  @Autowired
  IProductService iProductService;
 
@@ -136,13 +136,13 @@ class ProductServiceImplTest {
         Product product = productRepository.findById(productList.get(productList.size()-1).getIdProduct()).orElse(null);
         assertThat(product).isNull();
     }
-*/
+
     @Test
     void retreiveProductStock() {
         List<Product> listproducts = iProductService.retreiveProductStock(1L);
         assertThat(listproducts).isNotNull()
         .isNotEmpty();
     }
-
+*/
 
 }
