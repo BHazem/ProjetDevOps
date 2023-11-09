@@ -65,8 +65,9 @@ pipeline{
   stage('Deploy Snapshot'){
    steps {
             dir('DevOps_Project') {
-               sh 'mvn deploy -DskipTests -DaltDeploymentRepository=nexus-snapshots::default::http://localhost:8081/repository/maven-snapshots/'               }
-           }
+               sh 'mvn deploy -DskipTests'
+                  }
+  }
   }
       /*  stage('Build Docker Image') {
                       steps {
