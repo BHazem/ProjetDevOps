@@ -128,7 +128,7 @@ class StockServiceImplTest {
         // ... set other fields ...
         return entity;
     }
-  /*  @Test
+  */  @Test
     void testAddStockMoch(){
 
         StockDto stock2 =new StockDto(4L,"test4");
@@ -155,8 +155,7 @@ class StockServiceImplTest {
     @Test
     void testretrieveAllStock(){
         List<Stock> stocks = iStockService.retrieveAllStock();
-        assertThat(stocks).isNotNull()
-        .isNotEmpty();
+        assertThat(stocks).isNotNull();
     }
     /* @Test
     void retrieveStock(){

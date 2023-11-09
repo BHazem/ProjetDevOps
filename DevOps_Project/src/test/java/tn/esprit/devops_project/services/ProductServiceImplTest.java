@@ -125,14 +125,14 @@ class ProductServiceImplTest {
         assertThat(p).isNotNull();
     }
 */
-    /*@Test
+    @Test
     void deleteProduct() {
         List<Product> productList = iProductService.retreiveAllProduct();
         iProductService.deleteProduct(productList.get(productList.size()-1).getIdProduct());
         Product product = productRepository.findById(productList.get(productList.size()-1).getIdProduct()).orElse(null);
         assertThat(product).isNull();
     }
-*/
+
     @Test
     void retreiveProductStock() {
         List<Product> listproducts = iProductService.retreiveProductStock(1L);
