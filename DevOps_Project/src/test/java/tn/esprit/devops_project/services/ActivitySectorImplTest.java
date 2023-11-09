@@ -2,9 +2,12 @@ package tn.esprit.devops_project.services;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import tn.esprit.devops_project.dto.ActivitySectorDto;
@@ -20,6 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
+@DataJpaTest
+@ExtendWith(MockitoExtension.class)
 class ActivitySectorImplTest {
 
     @Mock

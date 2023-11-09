@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.devops_project.entities.Invoice;
 import tn.esprit.devops_project.entities.Operator;
@@ -25,7 +26,8 @@ import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
- class InvoiceServiceImplTest {
+@DataJpaTest
+class InvoiceServiceImplTest {
 
     @Mock
     private InvoiceRepository invoiceRepository;
@@ -48,7 +50,7 @@ import java.util.Optional;
     }
 
     @Test
-    void retrieveAllInvoices_ShouldReturnInvoiceList() {
+    void retrieveAllInvoices() {
         // Arrange
         when(invoiceRepository.findAll()).thenReturn(Collections.singletonList(new Invoice()));
 
@@ -60,24 +62,24 @@ import java.util.Optional;
         verify(invoiceRepository).findAll();
     }
 
-   /* @Test
-    void cancelInvoice_ShouldCancelTheInvoice() {
-        // Arrange
-        Long invoiceId = 1L;
-        Invoice invoice = new Invoice();
-        when(invoiceRepository.findById(invoiceId)).thenReturn(Optional.of(invoice));
-        doNothing().when(invoiceRepository).save(any(Invoice.class));
+    /* @Test
+     void cancelInvoice_ShouldCancelTheInvoice() {
+         // Arrange
+         Long invoiceId = 1L;
+         Invoice invoice = new Invoice();
+         when(invoiceRepository.findById(invoiceId)).thenReturn(Optional.of(invoice));
+         doNothing().when(invoiceRepository).save(any(Invoice.class));
 
-        // Act
-        invoiceService.cancelInvoice(invoiceId);
+         // Act
+         invoiceService.cancelInvoice(invoiceId);
 
-        // Assert
-        assertTrue(invoice.getArchived());
-        verify(invoiceRepository).save(invoice);
-    }
-*/
+         // Assert
+         assertTrue(invoice.getArchived());
+         verify(invoiceRepository).save(invoice);
+     }
+ */
     @Test
-    void retrieveInvoice_ShouldReturnInvoice() {
+    void retrieveInvoice() {
         // Arrange
         Long invoiceId = 1L;
         Invoice invoice = new Invoice();
@@ -91,31 +93,31 @@ import java.util.Optional;
         verify(invoiceRepository).findById(invoiceId);
     }
 
-  /*  @Test
-    void getInvoicesBySupplier_ShouldReturnInvoices() {
-        // Arrange
-        Long supplierId = 1L;
-        Supplier supplier = mock(Supplier.class);
-        when(supplierRepository.findById(supplierId)).thenReturn(Optional.of(supplier));
-        when(supplier.getInvoices()).thenReturn(null);
+   /* @Test
+      void getInvoicesBySupplier() {
+          // Arrange
+          Long supplierId = 1L;
+          Supplier supplier = mock(Supplier.class);
+          when(supplierRepository.findById(supplierId)).thenReturn(Optional.of(supplier));
+          when(supplier.getInvoices()).thenReturn(null);
 
-        // Act
-        List<Invoice> result = invoiceService.getInvoicesBySupplier(supplierId);
+          // Act
+          List<Invoice> result = invoiceService.getInvoicesBySupplier(supplierId);
 
-        // Assert
-        assertNotNull(result);
-        verify(supplierRepository).findById(supplierId);
-    }
+          // Assert
+          assertNotNull(result);
+          verify(supplierRepository).findById(supplierId);
+      }
 */
    /* @Test
-    void assignOperatorToInvoice_ShouldAssignOperator() {
+    void assignOperatorToInvoice() {
         // Arrange
         Long operatorId = 1L;
         Long invoiceId = 1L;
         Operator operator = new Operator();
         Invoice invoice = new Invoice();
-        when(operatorRepository.findByIdOperateur(operatorId)).thenReturn(operator);
-        when(invoiceRepository.findByIdInvoice(invoiceId)).thenReturn(invoice);
+        when(operatorRepository.findById(operatorId).orElse(null));
+        when(invoiceRepository.findById(invoiceId).orElse(null));
 
         // Act
         invoiceService.assignOperatorToInvoice(operatorId, invoiceId);
@@ -126,7 +128,7 @@ import java.util.Optional;
     }
 */
     @Test
-    void getTotalAmountInvoiceBetweenDates_ShouldReturnTotalAmount() {
+    void getTotalAmountInvoiceBetweenDates() {
         // Arrange
         Date startDate = new Date();
         Date endDate = new Date();

@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.devops_project.dto.ActivitySectorDto;
 import tn.esprit.devops_project.dto.ProductDto;
@@ -35,6 +36,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
+@DataJpaTest
 class ProductServiceImplTest {
 
    List<Product> productList = new ArrayList<Product>() {
