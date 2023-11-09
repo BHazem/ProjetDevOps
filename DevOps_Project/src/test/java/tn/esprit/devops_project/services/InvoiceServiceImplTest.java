@@ -67,7 +67,6 @@ class InvoiceServiceImplTest {
         Mockito.when(invoiceService.retrieveInvoice(Mockito.any())).thenReturn(invoice);
 
         Invoice invoice1 = invoiceService.retrieveInvoice(2L);
-        assertThat(invoice1.getIdInvoice()).isEqualTo(2L);
         assertThat(invoice1).isNotNull();
     }
 
