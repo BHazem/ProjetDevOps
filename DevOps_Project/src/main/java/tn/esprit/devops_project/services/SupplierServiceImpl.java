@@ -34,8 +34,8 @@ public class SupplierServiceImpl implements ISupplierService {
 
 	@Override
 	public Supplier addSupplier(SupplierDto supplierDto) {
-		Supplier supplier= convertDtoToEntity(supplierDto);
-		return supplierRepository.save(supplier);
+		Supplier supplierr= convertDtoToEntity(supplierDto);
+		return supplierRepository.save(supplierr);
 	}
 
 	@Override

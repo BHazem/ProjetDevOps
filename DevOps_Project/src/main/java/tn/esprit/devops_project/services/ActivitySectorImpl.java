@@ -21,9 +21,9 @@ public class ActivitySectorImpl implements IActivitySector {
 
     @Override
     public ActivitySector addActivitySector(ActivitySectorDto activitySectorDto) {
-        ActivitySector activitySector = convertDtoToEntity(activitySectorDto);
+        ActivitySector activitySectore = convertDtoToEntity(activitySectorDto);
 
-        return activitySectorRepository.save(activitySector);
+        return activitySectorRepository.save(activitySectore);
     }
 
     private ActivitySector convertDtoToEntity(ActivitySectorDto dto) {

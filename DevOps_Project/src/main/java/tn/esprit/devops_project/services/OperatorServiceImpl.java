@@ -24,8 +24,8 @@ public class OperatorServiceImpl implements IOperatorService {
 
 	@Override
 	public Operator addOperator(OperatorDto operatorDto) {
-		Operator   operator = convertDtoToEntity(operatorDto);
-		return operatorRepository.save(operator);
+		Operator   operatorr = convertDtoToEntity(operatorDto);
+		return operatorRepository.save(operatorr);
 	}
 
 	private Operator convertDtoToEntity(OperatorDto dto) {
