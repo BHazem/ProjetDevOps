@@ -63,8 +63,8 @@ class StockServiceImplTest {
     void retrieveStock_ShouldReturnStock() {
         // Arrange
         Long id = 1L;
-        Stock stock = new Stock(); // Assume Stock is properly set up
-        when(stockRepository.findByIdStock(id)).thenReturn(stock);
+        Stock stock =new Stock(4L,"test4");
+        Mockito.when(stockRepository.findByIdStock(id)).thenReturn(stock);
 
         // Act
         Stock result = stockRepository.findByIdStock(id);
