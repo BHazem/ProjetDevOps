@@ -6,6 +6,8 @@ import tn.esprit.devops_project.entities.Stock;
 
 public interface StockRepository extends JpaRepository<Stock, Long> {
 
-    Stock findStockByIdStock(Long idStock);
+
+
+    Stock findByIdStock(Long idStock);
 }
 

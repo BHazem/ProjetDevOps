@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -30,7 +29,6 @@ public class Operator implements Serializable{
 	String lname;
 	String password;
 	@OneToMany
-	@JsonIgnore
-	Set<Invoice> invoices;
+	private Set<Invoice> invoices;
 	
 }
