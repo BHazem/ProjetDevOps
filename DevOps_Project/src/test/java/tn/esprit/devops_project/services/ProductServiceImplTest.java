@@ -77,6 +77,17 @@ class ProductServiceImplTest {
     }
 
     @Test
+    void retrieveProductMockRepo() {
+        Product product = new Product(2L, "regg", 50f, 4, ProductCategory.CLOTHING);
+
+        Mockito.when(productRepositoryy.findByIdProduct(Mockito.any())).thenReturn(product);
+
+        Product product1 = productRepositoryy.findByIdProduct(2L);
+        assertThat(product1.getIdProduct()).isEqualTo(2L);
+        assertThat(product1).isNotNull();
+    }
+
+    @Test
     void retrieveProductStockMock() {
 
         Mockito.when(iProductServicee.retreiveProductStock(Mockito.anyLong())).thenReturn(productList);
