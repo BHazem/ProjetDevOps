@@ -61,7 +61,7 @@ class StockServiceImplTest {
 
     @Test
     void retrieveStock_ShouldReturnStock() {
-        Stock result = stockRepository.findByIdStock(7L);
+        Stock result = stockRepository.findByIdStock(1L);
         assertThat(result).isNotNull();
     }
 
@@ -120,7 +120,8 @@ class StockServiceImplTest {
     }
   */  @Test
     void testAddStockMoch(){
-        StockDto stock2 =new StockDto(4L,"test4");
+        StockDto stock2 =new StockDto();
+        stock2.setTitle("hazem");
         Stock savedStock = stockService.addStock(stock2);
         assertThat(savedStock).isNotNull();
     }
