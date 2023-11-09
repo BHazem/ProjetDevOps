@@ -1,0 +1,119 @@
+pipeline{
+    agent any
+    stages {
+      /*  stage("Testing version  Maven"){
+            steps {
+                sh "mvn -version"
+            }
+        }
+        stage("Testing version JDK"){
+            steps {
+                sh "java -version"
+            }
+        }
+        */
+        stage("Chekout Git"){
+            steps {
+                echo "Pulling"
+            }
+        }
+        stage('MVN COMPILE') {
+            steps{
+                 dir('DevOps_Project') {
+                sh 'mvn compile'
+            }
+        }
+}
+
+  stage('MVN test') {
+            steps{
+                 dir('DevOps_Project') {
+                sh 'mvn test'
+            }
+        }
+}
+  /* stage('Generate JaCoCo Coverage Report') {
+        steps {
+            dir('DevOps_Project') {
+                sh 'mvn jacoco:report'
+            }
+        }
+    }
+*/
+
+     stage('MVN SONARQUBE') {
+            steps{
+                 dir('DevOps_Project') {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+            }}
+        }
+         stage('MVN Install') {
+                    steps {
+                        dir('DevOps_Project') {
+                            sh 'mvn install'
+                        }
+                    }
+}
+          stage('Nexus') {
+                    steps{
+                         dir('DevOps_Project') {
+                        sh 'mvn deploy -DskipTests  -DaltDeploymentRepository=deploymentRepo::default::http://localhost:8081/repository/maven-releases/'
+                    }
+                }
+        }
+
+
+               stage('Build Docker Image') {
+                    steps {
+                        script {
+                            dir('DevOps_Project') {
+                                // Construire l'image Docker avec un tag. Remplacez 'myapp' par le nom de votre application
+                                sh ' docker build -t devops_project .'
+                            }
+                        }
+                    }
+                }
+
+                // Ajouter une étape pour pousser l'image dans un registre Docker
+                stage('Push Docker Image') {
+                    steps {
+                        script {
+                            // Pousser l'image vers le registre Docker. Remplacez 'myregistry' par l'URL de votre registre
+                              def dockerUsername = 'maleksoufi'
+                              def dockerPassword = 'docker123'
+
+
+                                 sh "docker login -u $dockerUsername -p $dockerPassword"
+                                   dir('DevOps_Project') {
+                sh 'docker tag devops_project maleksoufi/devops_project:latest'
+                sh 'docker push maleksoufi/devops_project:latest'
+            }
+
+                        }
+                    }
+}
+        stage('Docker Compose') {
+                    steps {
+                         dir('DevOps_Project') {
+                        sh 'docker compose up -d'
+                          }
+                    }
+                }
+
+ stage('Docker Report') {
+            steps {
+                dir('DevOps_Project') {
+                    sh 'docker compose ps'
+                }
+            }
+              post {
+                    success{
+                    emailext body: 'Votre pipiline est executé avec succes ', subject: 'Succesful Pipiline Build', to: 'malek.soufi@esprit.tn'
+                    }}
+        }
+
+
+    }
+}
+
+
