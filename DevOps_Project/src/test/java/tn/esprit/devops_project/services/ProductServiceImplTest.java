@@ -14,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import tn.esprit.devops_project.dto.ProductDto;
 import tn.esprit.devops_project.entities.Product;
 
 import tn.esprit.devops_project.entities.ProductCategory;
@@ -98,7 +99,7 @@ class ProductServiceImplTest {
 
     @Test
     void retrieveProduct() {
-        Product product1 = iProductService.retrieveProduct(5L);
+        Product product1 = iProductService.retrieveProduct(1L);
         assertThat(product1).isNotNull();
     }
 
@@ -118,13 +119,13 @@ class ProductServiceImplTest {
     }
 
 
-    /* @Test
+     @Test
     void addProduct() {
         ProductDto pdto = new ProductDto(1L, "CODE1", "IT");
         Product p = iProductService.addProduct(pdto,1L);
         assertThat(p).isNotNull();
     }
-*/
+
     @Test
     void deleteProduct() {
         List<Product> productList = iProductService.retreiveAllProduct();

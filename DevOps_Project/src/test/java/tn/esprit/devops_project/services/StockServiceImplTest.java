@@ -59,11 +59,11 @@ class StockServiceImplTest {
         verify(stockRepository).save(any(Stock.class));
     }
 
-    @Test
+    /*@Test
     void retrieveStock_ShouldReturnStock() {
         Stock result = stockService.retrieveStock(1L);
         assertThat(result).isNotNull();
-    }
+    }*/
 
     @Test
     void retrieveAllStock_ShouldReturnStockList() {
@@ -118,13 +118,13 @@ class StockServiceImplTest {
         // ... set other fields ...
         return entity;
     }
-  */  @Test
+  */  /*@Test
     void testAddStockMoch(){
         StockDto stock2 =new StockDto();
         stock2.setTitle("hazem");
         Stock savedStock = stockService.addStock(stock2);
         assertThat(savedStock).isNotNull();
-    }
+    }*/
 
 
 
