@@ -12,7 +12,7 @@ pipeline {
                 echo "Pulling"
             }
         }
-    }
+
 
 
 
@@ -60,7 +60,7 @@ pipeline {
                 }
             }
         }
-}
-
+         }
+    }
 }
 
