@@ -61,7 +61,7 @@ class StockServiceImplTest {
 
     @Test
     void retrieveStock_ShouldReturnStock() {
-        Stock result = stockRepository.findByIdStock(1L);
+        Stock result = stockService.retrieveStock(1L);
         assertThat(result).isNotNull();
     }
 

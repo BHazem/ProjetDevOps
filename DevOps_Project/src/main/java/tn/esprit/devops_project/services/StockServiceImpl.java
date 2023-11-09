@@ -17,7 +17,6 @@ public class StockServiceImpl implements IStockService {
     private Stock convertDtoToEntity(StockDto dto) {
         // create an instance of ActivitySector and set its fields using the values from the dto
         Stock entity = new Stock();
-        entity.setIdStock(dto.getIdStock());
         entity.setTitle(dto.getTitle());
 
         // ... set other fields ...
