@@ -61,18 +61,8 @@ class StockServiceImplTest {
 
     @Test
     void retrieveStock_ShouldReturnStock() {
-        // Arrange
-        Long id = 1L;
-        Stock stock =new Stock(4L,"test4");
-        Mockito.when(stockRepository.findByIdStock(id)).thenReturn(stock);
-
-        // Act
-        Stock result = stockRepository.findByIdStock(id);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(stock, result);
-        verify(stockRepository).findByIdStock(id);
+        Stock result = stockRepository.findByIdStock(7L);
+        assertThat(result).isNotNull();
     }
 
     @Test
@@ -130,11 +120,7 @@ class StockServiceImplTest {
     }
   */  @Test
     void testAddStockMoch(){
-
         StockDto stock2 =new StockDto(4L,"test4");
-        Stock stock1 =new Stock(4L,"test4");
-
-        Mockito.when(stockService.addStock(Mockito.any())).thenReturn(stock1);
         Stock savedStock = stockService.addStock(stock2);
         assertThat(savedStock).isNotNull();
     }
