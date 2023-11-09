@@ -20,7 +20,7 @@ public class InvoiceController {
     public List<Invoice> getInvoices() {
        return invoiceService.retrieveAllInvoices();
     }
-    @PostMapping("/invoice")
+    @PostMapping("/addinvoice")
     public Invoice addActivitySector(@RequestBody InvoiceDto invoiceDto){
         return invoiceService.addInvoice(invoiceDto);
     }
