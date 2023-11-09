@@ -9,7 +9,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.devops_project.dto.StockDto;
-import tn.esprit.devops_project.entities.Product;
 import tn.esprit.devops_project.entities.Stock;
 
 import java.util.Collections;

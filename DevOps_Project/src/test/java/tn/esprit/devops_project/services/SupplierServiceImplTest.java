@@ -4,6 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.devops_project.dto.SupplierDto;
+import tn.esprit.devops_project.entities.Product;
 import tn.esprit.devops_project.entities.Supplier;
 import tn.esprit.devops_project.repositories.SupplierRepository;
 
@@ -80,6 +82,14 @@ class SupplierServiceImplTest {
         doNothing().when(supplierRepository).deleteById(anyLong());
         supplierService.deleteSupplier(supplierId);
         verify(supplierRepository).deleteById(supplierId);
+    }
+
+    @Test
+    void deleteSupplier() {
+        List<Supplier> supplierList = supplierServicee.retrieveAllSuppliers();
+        supplierServicee.deleteSupplier(supplierList.get(supplierList.size()-1).getIdSupplier());
+        Supplier supplier = supplierRepositoryy.findById(supplierList.get(supplierList.size()-1).getIdSupplier()).orElse(null);
+        Assertions.assertThat(supplier).isNull();
     }
 
     // Test for retrieveSupplier method
