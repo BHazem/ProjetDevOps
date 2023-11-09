@@ -4,15 +4,18 @@ pipeline {
      tools {
         nodejs 'node'
     }
+
+
     stages {
-    stage ('GIT') {
+        stage("Chekout Git"){
             steps {
-               echo "Getting Project from Git";
-                git branch: "malek",
-                credentialsId: 'access',
-                    url: "https://github.com/BHazem/ProjetDevOps.git";
+                echo "Pulling"
             }
         }
+    }
+
+
+
 
      stage('Build') {
     steps {
@@ -47,4 +50,4 @@ pipeline {
 }
 
 }
-}
+
