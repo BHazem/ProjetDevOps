@@ -3,9 +3,9 @@ package tn.esprit.devops_project.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.devops_project.dto.ActivitySectorDto;
 import tn.esprit.devops_project.entities.ActivitySector;
 import tn.esprit.devops_project.services.Iservices.IActivitySector;
-
 import java.util.List;
 
 @RestController
@@ -20,7 +20,7 @@ public class ActivitySectorController {
     }
 
     @PostMapping("/activitySector")
-    ActivitySector addActivitySector(@RequestBody ActivitySector activitySector){
+    ActivitySector addActivitySector(@RequestBody ActivitySectorDto activitySector){
         return activitySectorService.addActivitySector(activitySector);
     }
 
@@ -30,7 +30,7 @@ public class ActivitySectorController {
     }
 
     @PutMapping("/activitySector")
-    ActivitySector updateActivitySector(@RequestBody ActivitySector activitySector){
+    ActivitySector updateActivitySector(@RequestBody ActivitySectorDto activitySector){
         return activitySectorService.updateActivitySector(activitySector);
     }
 

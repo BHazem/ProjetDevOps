@@ -1,5 +1,6 @@
 package tn.esprit.devops_project.services.Iservices;
 
+import tn.esprit.devops_project.dto.ActivitySectorDto;
 import tn.esprit.devops_project.entities.ActivitySector;
 
 import java.util.List;
@@ -7,11 +8,11 @@ import java.util.List;
 public interface IActivitySector {
     List<ActivitySector> retrieveAllActivitySectors();
 
-    ActivitySector addActivitySector(ActivitySector activitySector);
+    ActivitySector addActivitySector(ActivitySectorDto activitySector);
 
     void deleteActivitySector(Long id);
 
-    ActivitySector updateActivitySector(ActivitySector activitySector);
+    ActivitySector updateActivitySector(ActivitySectorDto activitySector);
 
     ActivitySector retrieveActivitySector(Long id);
 }

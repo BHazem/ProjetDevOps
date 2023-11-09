@@ -3,6 +3,7 @@ package tn.esprit.devops_project.services;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import tn.esprit.devops_project.dto.InvoiceDto;
 import tn.esprit.devops_project.entities.Invoice;
 import tn.esprit.devops_project.entities.Operator;
 import tn.esprit.devops_project.entities.Supplier;
@@ -24,6 +25,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	final OperatorRepository operatorRepository;
 	final InvoiceDetailRepository invoiceDetailRepository;
 	final SupplierRepository supplierRepository;
+	private static final String X1 = "Invoice not found";  // Compliant
 
 	//commentaire
 	//commentaire 2 developper
@@ -31,10 +33,31 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	public List<Invoice> retrieveAllInvoices() {
 		return invoiceRepository.findAll();
 	}
+
+
+	@Override
+	public Invoice addInvoice(InvoiceDto invoiceDto) {
+		Invoice invoice = convertDtoToEntity(invoiceDto);
+		return invoiceRepository.save(invoice);
+	}
+
+
+	private Invoice convertDtoToEntity(InvoiceDto dto) {
+		// create an instance of ActivitySector and set its fields using the values from the dto
+		Invoice entity = new Invoice();
+		entity.setArchived(dto.getArchived());
+		entity.setAmountInvoice(dto.getAmountDiscount());
+		entity.setDateCreationInvoice(dto.getDateCreationInvoice());
+		entity.setAmountInvoice(dto.getAmountInvoice());
+		entity.setArchived(dto.getArchived());
+
+		// ... set other fields ...
+		return entity;
+	}
 	@Override
 	public void cancelInvoice(Long invoiceId) {
 		// method 01
-		Invoice invoice = invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException("Invoice not found"));
+		Invoice invoice = invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException(X1));
 		invoice.setArchived(true);
 		invoiceRepository.save(invoice);
 		//method 02 (Avec JPQL)
@@ -44,7 +67,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	@Override
 	public Invoice retrieveInvoice(Long invoiceId) {
 
-		return invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException("Invoice not found"));
+		return invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException(X1));
 	}
 
 	@Override
@@ -55,8 +78,8 @@ public class InvoiceServiceImpl implements IInvoiceService {
 
 	@Override
 	public void assignOperatorToInvoice(Long idOperator, Long idInvoice) {
-		Invoice invoice = invoiceRepository.findById(idInvoice).orElseThrow(() -> new NullPointerException("Invoice not found"));
-		Operator operator = operatorRepository.findById(idOperator).orElseThrow(() -> new NullPointerException("Operator not found"));
+		Invoice invoice = invoiceRepository.findByIdInvoice(idInvoice);
+		Operator operator = operatorRepository.findByIdOperateur(idOperator);
 		operator.getInvoices().add(invoice);
 		operatorRepository.save(operator);
 	}

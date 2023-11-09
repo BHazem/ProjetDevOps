@@ -3,11 +3,11 @@ package tn.esprit.devops_project.services;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import tn.esprit.devops_project.dto.SupplierDto;
 import tn.esprit.devops_project.entities.Supplier;
 import tn.esprit.devops_project.repositories.SupplierRepository;
 import tn.esprit.devops_project.services.Iservices.ISupplierService;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,6 +16,15 @@ import java.util.List;
 public class SupplierServiceImpl implements ISupplierService {
 
 	SupplierRepository supplierRepository;
+	private Supplier convertDtoToEntity(SupplierDto dto) {
+		// create an instance of ActivitySector and set its fields using the values from the dto
+		Supplier entity = new Supplier();
+		entity.setCode(dto.getCode());
+		entity.setLabel(dto.getLabel());
+		entity.setSupplierCategory(dto.getSupplierCategory());
+		// ... set other fields ...
+		return entity;
+	}
 
 	@Override
 	public List<Supplier> retrieveAllSuppliers() {
@@ -24,18 +33,22 @@ public class SupplierServiceImpl implements ISupplierService {
 
 
 	@Override
-	public Supplier addSupplier(Supplier supplier) {
+	public Supplier addSupplier(SupplierDto supplierDto) {
+		Supplier supplier= convertDtoToEntity(supplierDto);
 		return supplierRepository.save(supplier);
 	}
 
 	@Override
-	public Supplier updateSupplier(Supplier supplier) {
+	public Supplier updateSupplier(SupplierDto supplierDto) {
+		Supplier supplier= convertDtoToEntity(supplierDto);
+
 		return  supplierRepository.save(supplier);
 	}
 
 	@Override
-	public void deleteSupplier(Long SupplierId) {
-		supplierRepository.deleteById(SupplierId);
+	public void deleteSupplier(Long supplierId) {
+
+		supplierRepository.deleteById(supplierId);
 
 	}
 

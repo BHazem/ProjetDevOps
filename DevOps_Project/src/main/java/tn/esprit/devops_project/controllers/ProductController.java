@@ -2,6 +2,7 @@ package tn.esprit.devops_project.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.devops_project.dto.ProductDto;
 import tn.esprit.devops_project.entities.Product;
 import tn.esprit.devops_project.entities.ProductCategory;
 import tn.esprit.devops_project.services.Iservices.IProductService;
@@ -10,14 +11,14 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class ProductController {
 
     private final IProductService productService;
 
     @PostMapping("/product/{idStock}")
-    Product addProduct(@RequestBody Product product,@PathVariable Long idStock){
-        return productService.addProduct(product,idStock);
+    Product addProduct(@RequestBody ProductDto productDto, @PathVariable Long idStock){
+        return productService.addProduct(productDto,idStock);
     }
 
     @GetMapping("/product/{id}")
@@ -40,8 +41,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/product/{id}")
-    String deleteProduct(@PathVariable Long id){
+    void deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);
-        return "deleted";
     }
 }

@@ -3,8 +3,8 @@ package tn.esprit.devops_project.services;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tn.esprit.devops_project.dto.OperatorDto;
 import tn.esprit.devops_project.entities.Operator;
 import tn.esprit.devops_project.repositories.OperatorRepository;
 import tn.esprit.devops_project.services.Iservices.IOperatorService;
@@ -23,10 +23,21 @@ public class OperatorServiceImpl implements IOperatorService {
 	}
 
 	@Override
-	public Operator addOperator(Operator operator) {
+	public Operator addOperator(OperatorDto operatorDto) {
+		Operator   operator = convertDtoToEntity(operatorDto);
 		return operatorRepository.save(operator);
 	}
 
+	private Operator convertDtoToEntity(OperatorDto dto) {
+		// create an instance of ActivitySector and set its fields using the values from the dto
+		Operator entity = new Operator();
+		entity.setIdOperateur(dto.getIdOperateur());
+		entity.setFname(dto.getFname());
+		entity.setLname(dto.getLname());
+		entity.setPassword(dto.getPassword());
+		// ... set other fields ...
+		return entity;
+	}
 	@Override
 	public void deleteOperator(Long id) {
 		operatorRepository.deleteById(id);
@@ -34,7 +45,9 @@ public class OperatorServiceImpl implements IOperatorService {
 	}
 
 	@Override
-	public Operator updateOperator(Operator operator) {
+	public Operator updateOperator(OperatorDto operatorDto) {
+		Operator   operator = convertDtoToEntity(operatorDto);
+
 		return operatorRepository.save(operator);
 	}
 

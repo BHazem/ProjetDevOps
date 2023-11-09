@@ -2,6 +2,7 @@ package tn.esprit.devops_project.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.devops_project.dto.InvoiceDto;
 import tn.esprit.devops_project.entities.Invoice;
 import tn.esprit.devops_project.services.Iservices.IInvoiceService;
 
@@ -19,7 +20,10 @@ public class InvoiceController {
     public List<Invoice> getInvoices() {
        return invoiceService.retrieveAllInvoices();
     }
-
+    @PostMapping("/invoice")
+    public Invoice addActivitySector(@RequestBody InvoiceDto invoiceDto){
+        return invoiceService.addInvoice(invoiceDto);
+    }
     @GetMapping("/invoice/{invoiceId}")
     public Invoice retrieveInvoice(@PathVariable Long invoiceId) {
         return invoiceService.retrieveInvoice(invoiceId);
