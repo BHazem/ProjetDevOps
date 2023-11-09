@@ -20,7 +20,7 @@ public class Stock implements Serializable {
     long idStock;
     String title;
     @OneToMany(mappedBy = "stock")
-    Set<Product> products;
+    private Set<Product> products;
 
     public Stock(long idStock, String title) {
         this.idStock = idStock;
