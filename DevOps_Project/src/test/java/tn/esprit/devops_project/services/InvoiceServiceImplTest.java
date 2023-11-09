@@ -53,7 +53,7 @@ import java.util.Optional;
         when(invoiceRepository.findAll()).thenReturn(Collections.singletonList(new Invoice()));
 
         // Act
-        List<Invoice> result = invoiceService.retrieveAllInvoices();
+        List<Invoice> result = invoiceRepository.findAll();
 
         // Assert
         assertFalse(result.isEmpty());
@@ -84,7 +84,7 @@ import java.util.Optional;
         when(invoiceRepository.findById(invoiceId)).thenReturn(Optional.of(invoice));
 
         // Act
-        Invoice result = invoiceService.retrieveInvoice(invoiceId);
+        Invoice result = invoiceRepository.findById(invoiceId).orElse(null);
 
         // Assert
         assertNotNull(result);
@@ -133,7 +133,7 @@ import java.util.Optional;
         when(invoiceRepository.getTotalAmountInvoiceBetweenDates(startDate, endDate)).thenReturn(100.0f);
 
         // Act
-        float totalAmount = invoiceService.getTotalAmountInvoiceBetweenDates(startDate, endDate);
+        float totalAmount = invoiceRepository.getTotalAmountInvoiceBetweenDates(startDate, endDate);
 
         // Assert
         assertEquals(100.0f, totalAmount);

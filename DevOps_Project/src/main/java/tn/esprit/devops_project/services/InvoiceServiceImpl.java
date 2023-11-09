@@ -3,6 +3,9 @@ package tn.esprit.devops_project.services;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import tn.esprit.devops_project.dto.ActivitySectorDto;
+import tn.esprit.devops_project.dto.InvoiceDto;
+import tn.esprit.devops_project.entities.ActivitySector;
 import tn.esprit.devops_project.entities.Invoice;
 import tn.esprit.devops_project.entities.Operator;
 import tn.esprit.devops_project.entities.Supplier;
@@ -31,6 +34,27 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	@Override
 	public List<Invoice> retrieveAllInvoices() {
 		return invoiceRepository.findAll();
+	}
+
+
+	@Override
+	public Invoice addInvoice(InvoiceDto invoiceDto) {
+		Invoice invoice = convertDtoToEntity(invoiceDto);
+		return invoiceRepository.save(invoice);
+	}
+
+
+	private Invoice convertDtoToEntity(InvoiceDto dto) {
+		// create an instance of ActivitySector and set its fields using the values from the dto
+		Invoice entity = new Invoice();
+		entity.setArchived(dto.getArchived());
+		entity.setAmountInvoice(dto.getAmountDiscount());
+		entity.setDateCreationInvoice(dto.getDateCreationInvoice());
+		entity.setAmountInvoice(dto.getAmountInvoice());
+		entity.setArchived(dto.getArchived());
+
+		// ... set other fields ...
+		return entity;
 	}
 	@Override
 	public void cancelInvoice(Long invoiceId) {
