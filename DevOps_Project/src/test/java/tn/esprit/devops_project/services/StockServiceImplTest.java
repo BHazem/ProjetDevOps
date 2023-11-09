@@ -87,16 +87,16 @@ class StockServiceImplTest {
 
      @Test
     void retrieveStock(){
-        Stock stock1 = stockService.retrieveStock(2L);
+        Stock stock1 = iStockService.retrieveStock(2L);
         assertThat(stock1).isNotNull();
     }
 
 
     @Test
     void deleteStock() {
-        List<Stock> stockList = stockService.retrieveAllStock();
-        stockService.deleteStock(stockList.get(stockList.size()-1).getIdStock());
-        Stock stock = stockRepository.findById(stockList.get(stockList.size()-1).getIdStock()).orElse(null);
+        List<Stock> stockList = iStockService.retrieveAllStock();
+        iStockService.deleteStock(stockList.get(stockList.size()-1).getIdStock());
+        Stock stock = stockRepositoryy.findById(stockList.get(stockList.size()-1).getIdStock()).orElse(null);
         assertThat(stock).isNull();
     }
 }
