@@ -8,6 +8,6 @@ public interface StockRepository extends JpaRepository<Stock, Long> {
 
 
 
-    Stock findByIdStock(Long IdStock);
+    Stock findByIdStock(Long idStock);
 }
 

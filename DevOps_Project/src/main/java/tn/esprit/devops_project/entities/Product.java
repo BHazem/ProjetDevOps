@@ -35,6 +35,5 @@ public class Product implements Serializable {
         this.category = productCategory;
     }
 
-    public Product(long l, String code1, String it, Object o) {
-    }
+
 }

@@ -1,8 +1,6 @@
 package tn.esprit.devops_project.services.iservices;
 
-import tn.esprit.devops_project.dto.ActivitySectorDto;
 import tn.esprit.devops_project.dto.InvoiceDto;
-import tn.esprit.devops_project.entities.ActivitySector;
 import tn.esprit.devops_project.entities.Invoice;
 
 import java.util.Date;

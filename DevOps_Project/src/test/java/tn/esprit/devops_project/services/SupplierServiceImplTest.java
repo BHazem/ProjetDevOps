@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class SupplierServiceImplTest {
+ class SupplierServiceImplTest {
 
     @Mock
     private SupplierRepository supplierRepository;

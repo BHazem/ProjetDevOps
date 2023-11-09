@@ -2,9 +2,7 @@ package tn.esprit.devops_project.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.devops_project.dto.ActivitySectorDto;
 import tn.esprit.devops_project.dto.InvoiceDto;
-import tn.esprit.devops_project.entities.ActivitySector;
 import tn.esprit.devops_project.entities.Invoice;
 import tn.esprit.devops_project.services.iservices.IInvoiceService;
 
