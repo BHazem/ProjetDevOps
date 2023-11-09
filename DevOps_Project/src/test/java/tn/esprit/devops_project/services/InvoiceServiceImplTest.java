@@ -14,9 +14,13 @@ import tn.esprit.devops_project.entities.ProductCategory;
 import tn.esprit.devops_project.repositories.InvoiceRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -39,7 +43,7 @@ class InvoiceServiceImplTest {
 
     @Test
     void retrieveAllInvoices() {
-        Mockito.when(invoiceService.retrieveAllInvoices()).thenReturn(invoiceList);
+        when(invoiceService.retrieveAllInvoices()).thenReturn(invoiceList);
         List<Invoice> list = invoiceService.retrieveAllInvoices();
         Assertions.assertNotNull(list);
     }
@@ -64,7 +68,7 @@ class InvoiceServiceImplTest {
     void retrieveInvoice() {
         Invoice invoice = new Invoice(1f, 50f,false);
 
-        Mockito.when(invoiceService.retrieveInvoice(Mockito.any())).thenReturn(invoice);
+        when(invoiceService.retrieveInvoice(Mockito.any())).thenReturn(invoice);
 
         Invoice invoice1 = invoiceService.retrieveInvoice(2L);
         assertThat(invoice1).isNotNull();
@@ -104,20 +108,16 @@ class InvoiceServiceImplTest {
         verify(operatorRepository).save(operator);
     }
 */
-    /*@Test
+    @Test
     void getTotalAmountInvoiceBetweenDates() {
-        // Arrange
         Date startDate = new Date();
         Date endDate = new Date();
         when(invoiceRepository.getTotalAmountInvoiceBetweenDates(startDate, endDate)).thenReturn(100.0f);
 
-        // Act
         float totalAmount = invoiceRepository.getTotalAmountInvoiceBetweenDates(startDate, endDate);
 
-        // Assert
         assertEquals(100.0f, totalAmount);
         verify(invoiceRepository).getTotalAmountInvoiceBetweenDates(startDate, endDate);
-    }*/
+    }
 
-    // Additional test cases...
 }
