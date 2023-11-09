@@ -67,7 +67,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	@Override
 	public Invoice retrieveInvoice(Long invoiceId) {
 
-		return invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException(X1));
+		return invoiceRepository.findByIdInvoice(invoiceId);
 	}
 
 	@Override
