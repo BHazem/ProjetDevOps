@@ -11,6 +11,7 @@ import java.util.List;
 //@CrossOrigin(origins = "*")
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "*")
 public class StockController {
 
     IStockService stockService;

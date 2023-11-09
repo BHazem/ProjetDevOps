@@ -4,15 +4,18 @@ pipeline {
      tools {
         nodejs 'node'
     }
+
+
     stages {
-    stage ('GIT') {
+        stage("Chekout Git"){
             steps {
-               echo "Getting Project from Git";
-                git branch: "malek",
-                credentialsId: 'access',
-                    url: "https://github.com/BHazem/ProjetDevOps.git";
+                echo "Pulling"
             }
         }
+    }
+
+
+
 
      stage('Build') {
     steps {
@@ -23,6 +26,19 @@ pipeline {
                     }
     }
 }
+
+  stage('SonarQube Analysis') {
+            steps {
+                // Assuming SonarQube environment is set up correctly
+                sh 'npm sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+            }
+        }
+        stage('Deploy to Nexus') {
+            steps {
+                // Deploy to Nexus repository, ensure Maven is set up with correct settings.xml
+                sh 'npm deploy -DskipTests -DaltDeploymentRepository=deploymentRepo::default::http://localhost:8081/repository/Angular-project/'
+            }
+        }
  stage('Docker Image Build - Frontend') {
             steps {
                 script {
@@ -47,4 +63,4 @@ pipeline {
 }
 
 }
-}
+
