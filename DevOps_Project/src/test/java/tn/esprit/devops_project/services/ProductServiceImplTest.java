@@ -102,6 +102,12 @@ class ProductServiceImplTest {
     }
 
     @Test
+    void retrieveProductRepo() {
+        Product product = productRepository.findById(1L).orElse(null);
+        assertThat(product).isNotNull();
+    }
+
+    @Test
     void retreiveAllProduct() {
         List<Product> productList = iProductService.retreiveAllProduct();
         assertThat(productList).isNotNull()

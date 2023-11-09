@@ -1,37 +1,48 @@
 package tn.esprit.devops_project.services;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+import tn.esprit.devops_project.entities.Invoice;
+import tn.esprit.devops_project.entities.Product;
+import tn.esprit.devops_project.entities.ProductCategory;
 import tn.esprit.devops_project.repositories.InvoiceRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
 class InvoiceServiceImplTest {
 
+
+    @InjectMocks
+    private InvoiceServiceImpl invoiceService;
    @Mock
     private InvoiceRepository invoiceRepository;
 
+    List<Invoice> invoiceList = new ArrayList<Invoice>() {
+        {
+            add(new Invoice(1f, 50f,false));
+            add(new Invoice(2f,40f, true));
+        }
+    };
 
-   /* @BeforeEach
-    void setUp() {
-        // Any setup before each test can go here
-    }*/
 
-   /* @Test
+    @Test
     void retrieveAllInvoices() {
-        // Arrange
-        when(invoiceRepository.findAll()).thenReturn(Collections.singletonList(new Invoice()));
-
-        // Act
-        List<Invoice> result = invoiceRepository.findAll();
-
-        // Assert
-        assertFalse(result.isEmpty());
-        verify(invoiceRepository).findAll();
-    }*/
+        Mockito.when(invoiceService.retrieveAllInvoices()).thenReturn(invoiceList);
+        List<Invoice> list = invoiceService.retrieveAllInvoices();
+        Assertions.assertNotNull(list);
+    }
 
     /* @Test
      void cancelInvoice_ShouldCancelTheInvoice() {
@@ -49,20 +60,16 @@ class InvoiceServiceImplTest {
          verify(invoiceRepository).save(invoice);
      }
  */
-   /* @Test
+    @Test
     void retrieveInvoice() {
-        // Arrange
-        Long invoiceId = 1L;
-        Invoice invoice = new Invoice();
-        when(invoiceRepository.findById(invoiceId)).thenReturn(Optional.of(invoice));
+        Invoice invoice = new Invoice(1f, 50f,false);
 
-        // Act
-        Invoice result = invoiceRepository.findById(invoiceId).orElse(null);
+        Mockito.when(invoiceService.retrieveInvoice(Mockito.any())).thenReturn(invoice);
 
-        // Assert
-        assertNotNull(result);
-        verify(invoiceRepository).findById(invoiceId);
-    }*/
+        Invoice invoice1 = invoiceService.retrieveInvoice(2L);
+        assertThat(invoice1.getIdInvoice()).isEqualTo(2L);
+        assertThat(invoice1).isNotNull();
+    }
 
     /* @Test
        void getInvoicesBySupplier() {
