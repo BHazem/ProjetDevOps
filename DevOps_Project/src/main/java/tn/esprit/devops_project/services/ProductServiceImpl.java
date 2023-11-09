@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tn.esprit.devops_project.dto.ProductDto;
-import tn.esprit.devops_project.services.Iservices.IProductService;
+import tn.esprit.devops_project.services.iservices.IProductService;
 import tn.esprit.devops_project.entities.Product;
 import tn.esprit.devops_project.entities.ProductCategory;
 import tn.esprit.devops_project.entities.Stock;

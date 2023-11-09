@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.devops_project.dto.OperatorDto;
 import tn.esprit.devops_project.entities.Operator;
-import tn.esprit.devops_project.services.Iservices.IOperatorService;
+import tn.esprit.devops_project.services.iservices.IOperatorService;
 
 import java.util.List;
 

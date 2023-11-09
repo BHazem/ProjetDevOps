@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.devops_project.dto.ActivitySectorDto;
 import tn.esprit.devops_project.entities.ActivitySector;
-import tn.esprit.devops_project.services.Iservices.IActivitySector;
+import tn.esprit.devops_project.services.iservices.IActivitySector;
 import java.util.List;
 
 @RestController

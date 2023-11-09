@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.devops_project.dto.InvoiceDto;
 import tn.esprit.devops_project.entities.Invoice;
-import tn.esprit.devops_project.services.Iservices.IInvoiceService;
+import tn.esprit.devops_project.services.iservices.IInvoiceService;
 
 import java.util.Date;
 import java.util.List;
