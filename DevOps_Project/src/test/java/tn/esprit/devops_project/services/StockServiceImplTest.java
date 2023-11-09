@@ -44,6 +44,12 @@ class StockServiceImplTest {
     @InjectMocks
     private StockServiceImpl stockService;
 
+    @Autowired
+    private StockRepository stockRepositoryy;
+
+    @Autowired
+    private StockServiceImpl stockServicee;
+
     @Test
     void addStock_ShouldReturnNewStock() {
         // Arrange
@@ -59,11 +65,11 @@ class StockServiceImplTest {
         verify(stockRepository).save(any(Stock.class));
     }
 
-    /*@Test
+    @Test
     void retrieveStock_ShouldReturnStock() {
-        Stock result = stockService.retrieveStock(1L);
+        Stock result = stockServicee.retrieveStock(1L);
         assertThat(result).isNotNull();
-    }*/
+    }
 
     @Test
     void retrieveAllStock_ShouldReturnStockList() {
@@ -118,13 +124,13 @@ class StockServiceImplTest {
         // ... set other fields ...
         return entity;
     }
-  */  /*@Test
+  */  @Test
     void testAddStockMoch(){
         StockDto stock2 =new StockDto();
         stock2.setTitle("hazem");
-        Stock savedStock = stockService.addStock(stock2);
+        Stock savedStock = stockServicee.addStock(stock2);
         assertThat(savedStock).isNotNull();
-    }*/
+    }
 
 
 
