@@ -106,11 +106,12 @@ pipeline{
                     sh 'docker compose ps'
                 }
             }
+              post {
+                    success{
+                    emailext body: 'Votre pipiline est executé avec succes ', subject: 'Succesful Pipiline Build', to: 'malek.soufi@esprit.tn'
+                    }}
         }
-        post {
-        success{
-        emailext body: 'Votre pipiline est executé avec succes ', subject: 'Succesful Pipiline Build', to: 'malek.soufi@esprit.tn'
-        }}
+
 
     }
 }
