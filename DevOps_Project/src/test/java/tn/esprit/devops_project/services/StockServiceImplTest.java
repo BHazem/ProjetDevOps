@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.devops_project.dto.StockDto;
+import tn.esprit.devops_project.entities.Product;
 import tn.esprit.devops_project.entities.Stock;
 
 import java.util.Collections;
@@ -42,15 +43,10 @@ class StockServiceImplTest {
 
     @Test
     void addStock_ShouldReturnNewStock() {
-        // Arrange
-        StockDto stockDto = new StockDto(); // Assume StockDto is properly set up
-        Stock stock = new Stock(); // Assume Stock is properly set up
+        StockDto stockDto = new StockDto();
+        Stock stock = new Stock();
         when(stockRepository.save(any(Stock.class))).thenReturn(stock);
-
-        // Act
         Stock result = stockService.addStock(stockDto);
-
-        // Assert
         assertNotNull(result);
         verify(stockRepository).save(any(Stock.class));
     }
@@ -63,69 +59,19 @@ class StockServiceImplTest {
 
     @Test
     void retrieveAllStock_ShouldReturnStockList() {
-        // Arrange
         when(stockRepository.findAll()).thenReturn(Collections.singletonList(new Stock()));
-
-        // Act
         List<Stock> result = stockService.retrieveAllStock();
-
-        // Assert
         assertFalse(result.isEmpty());
         verify(stockRepository).findAll();
     }
-   /* @InjectMocks
-    private StockServiceImpl stockService;
 
-    @Mock
-    private StockRepository stockRepository;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
-    Stock stock = new Stock(1L,"qqq");
-    List<Stock> stockList= new ArrayList<Stock>(){
-        {
-            add(new Stock(2L,"aaa"));
-            add(new Stock(3L, "bbb"));
-        }
-    };
-    @Test
-    void  testretrieveAllStockMock() {
-        Mockito.when(stockService.retrieveAllStock()).thenReturn(stockList);
-        List<Stock> list = stockService.retrieveAllStock();
-        Assertions.assertNotNull(list);
-    }
-
-    @Test
-    void testretrievestochMock(){
-        Stock stock = new Stock(2L,"qqq");
-        Mockito.when(stockService.retrieveStock(Mockito.any())).thenReturn(stock);
-        Stock stock1 =stockService.retrieveStock(2L);
-        assertThat(stock1.getIdStock()).isEqualTo(2L)
-                .isNotNull();
-    }
-    private Stock convertDtoToEntity(StockDto dto) {
-        // create an instance of ActivitySector and set its fields using the values from the dto
-        Stock entity = new Stock();
-        entity.setIdStock(dto.getIdStock());
-        entity.setTitle(dto.getTitle());
-
-        // ... set other fields ...
-        return entity;
-    }
-  */  @Test
+  @Test
     void testAddStockMoch(){
         StockDto stock2 =new StockDto();
         stock2.setTitle("hazem");
         Stock savedStock = stockServicee.addStock(stock2);
         assertThat(savedStock).isNotNull();
     }
-
-
-
-
-
 
 
 
@@ -138,12 +84,19 @@ class StockServiceImplTest {
         List<Stock> stocks = iStockService.retrieveAllStock();
         assertThat(stocks).isNotNull();
     }
-    /* @Test
+
+     @Test
     void retrieveStock(){
         Stock stock1 = stockService.retrieveStock(2L);
         assertThat(stock1).isNotNull();
     }
-*/
 
 
+    @Test
+    void deleteStock() {
+        List<Stock> stockList = stockService.retrieveAllStock();
+        stockService.deleteStock(stockList.get(stockList.size()-1).getIdStock());
+        Stock stock = stockRepository.findById(stockList.get(stockList.size()-1).getIdStock()).orElse(null);
+        assertThat(stock).isNull();
+    }
 }

@@ -30,5 +30,9 @@ public class StockController {
         return stockService.retrieveAllStock();
     }
 
+    @DeleteMapping("/stockDelete/{id}")
+    void deleteStock(@PathVariable Long id){
+        stockService.deleteStock(id);
+    }
 
 }
