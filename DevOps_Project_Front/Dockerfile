@@ -13,7 +13,7 @@ RUN npm install --legacy-peer-deps
 COPY ./ /app/
 
 ## Run the build using the Angular CLI
-RUN ng build --configuration=production --output-path=dist
+RUN ng build --aot --configuration=production --output-path=dist
 
 ## Production Stage
 FROM nginx:1.21-alpine as production-stage
